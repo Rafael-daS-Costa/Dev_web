@@ -1,31 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package entidade;
 
-public class Usuario {
-
+/**
+ *
+ * @author rafael
+ */
+public class Funcionarios {
     private int id;
     private String nome;
     private String cpf;
-    private String endereco;
     private String senha;
+    private String papel;
 
-    public Usuario(String nome, String cpf, String endereco, String senha) {
+    public Funcionarios() {
+    }
+
+    public Funcionarios(int id, String nome, String cpf, String senha, String papel) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
-        this.endereco = endereco;
         this.senha = senha;
-    }
-
-    public Usuario(String cpf, String senha) {
-        this.cpf = cpf;
-        this.senha = senha;
-    }
-
-    public Usuario() {
-        this.id = 0;
-        this.nome = "";
-        this.cpf = "";
-        this.endereco = "";
-        this.senha = "";;
+        this.papel = papel;
     }
 
     public int getId() {
@@ -52,14 +50,6 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -68,4 +58,11 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getPapel() {
+        return papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
+    }
 }
