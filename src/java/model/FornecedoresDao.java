@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidade.Fornecedores;
+import entidade.Funcionarios;
 
 public class FornecedoresDao implements Dao<Fornecedores> {
     @Override

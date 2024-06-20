@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" import="entidade.Usuario" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="entidade.Funcionarios" %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/aplicacaoMVC/home">Home</a>
@@ -11,7 +11,7 @@
                     // testar se está logado
                     HttpSession sessao = request.getSession(false);
                     if (sessao != null) {
-                        Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+                        Funcionarios usuarioLogado = (Funcionarios) session.getAttribute("usuario");
                         if (usuarioLogado != null) { %>
                             <a class="nav-link" href="/aplicacaoMVC/admin/dashboard">Dashboard</a>
                             <a class="nav-link" href="/aplicacaoMVC/admin/CategoriaController?acao=Listar">Categorias</a>

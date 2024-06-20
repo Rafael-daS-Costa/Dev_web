@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" import="entidade.Usuario" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="entidade.Funcionarios" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,9 +17,9 @@
 
                 <h1>Área Restrita</h1>
                 <%
-                    Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+                    Funcionarios funcionarioLogado = (Funcionarios) session.getAttribute("funcionario");
                     out.println("<h3>Usuário logado com sucesso</h3>");
-                    out.println("<h2>Nome: " + usuarioLogado.getNome() + "</h2>");
+                    out.println("<h2>Nome: " + funcionarioLogado.getNome() + "</h2>");
                 %>
 
 

@@ -1,6 +1,6 @@
 package filtro;
 
-import entidade.Usuario;
+import entidade.Funcionarios;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,9 +20,9 @@ public class filtroRestrito implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
 
-        Usuario usuario = (Usuario)((HttpServletRequest) request).getSession().getAttribute("usuario");
+        Funcionarios funcionario = (Funcionarios)((HttpServletRequest) request).getSession().getAttribute("funcionario");
 
-        if ((usuario != null) && (!((String) usuario.getNome()).isEmpty())) {
+        if ((funcionario != null) && (!((String) funcionario.getNome()).isEmpty())) {
             chain.doFilter(request, response);
         } else {
             ((HttpServletResponse) response).sendRedirect("http://localhost:8080/aplicacaoMVC/home");

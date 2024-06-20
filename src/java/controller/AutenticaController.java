@@ -1,6 +1,6 @@
 package controller;
 
-import entidade.Usuario;
+import entidade.Funcionarios;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.UsuarioDAO;
+import model.FuncionariosDAO;
 
 /**
  *
@@ -43,25 +43,25 @@ public class AutenticaController extends HttpServlet {
             rd.forward(request, response);
 
         } else {
-            Usuario usuarioObtido;
-            Usuario usuario = new Usuario(cpf_user, senha_user);
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Funcionarios funcionarioObtido;
+            Funcionarios funcionario = new Funcionarios(cpf_user, senha_user);
+            FuncionariosDAO funcionarioDAO = new FuncionariosDAO();
             try {
-                usuarioObtido = usuarioDAO.Logar(usuario);
+                funcionarioObtido = funcionarioDAO.Logar(funcionario);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 throw new RuntimeException("Falha na query para Logar");
             }
 
-            if (usuarioObtido.getId() != 0) {
+            if (funcionarioObtido.getId() != 0) {
                 HttpSession session = request.getSession();
-                session.setAttribute("usuario", usuarioObtido);
+                session.setAttribute("funcionario", funcionarioObtido);
 
                 rd = request.getRequestDispatcher("/admin/dashboard");
                 rd.forward(request, response);
 
             } else {
-                request.setAttribute("msgError", "Usuário e/ou senha incorreto");
+                request.setAttribute("msgError", "Usuário e/ou senha incorreto barabin baraboom");
                 rd = request.getRequestDispatcher("/views/autenticacao/formLogin.jsp");
                 rd.forward(request, response);
 

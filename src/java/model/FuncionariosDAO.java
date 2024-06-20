@@ -130,4 +130,31 @@ public class FuncionariosDAO implements Dao<Funcionarios>{
         }
     }
     
+    public Funcionarios Logar(Funcionarios funcionario) throws Exception {
+        Conexao conexao = new Conexao();
+        try {
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM funcionarios WHERE cpf=? and senha =? LIMIT 1");
+            sql.setString(1, funcionario.getCpf());
+            sql.setString(2, funcionario.getSenha());
+            ResultSet resultado = sql.executeQuery();
+            Funcionarios funcionarioObtido = new Funcionarios();
+            if (resultado != null) {
+                while (resultado.next()) {
+                    System.out.println(resultado.getString("id"));
+                    funcionarioObtido.setId(Integer.parseInt(resultado.getString("id")));
+                    funcionarioObtido.setNome(resultado.getString("nome"));
+                    funcionarioObtido.setCpf(resultado.getString("cpf"));
+                    funcionarioObtido.setPapel(resultado.getString("papel"));
+                    funcionarioObtido.setSenha(resultado.getString("senha"));
+                }
+            }
+            return funcionarioObtido;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException("Query de select (get) incorreta");
+        } finally {
+            conexao.closeConexao();
+        }
+    }
 }

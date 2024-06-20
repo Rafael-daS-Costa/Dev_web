@@ -18,6 +18,11 @@ public class Funcionarios {
     public Funcionarios() {
     }
 
+    public Funcionarios(String cpf, String senha) {
+        this.cpf = cpf;
+        this.senha = senha;
+    }
+
     public Funcionarios(int id, String nome, String cpf, String senha, String papel) {
         this.id = id;
         this.nome = nome;
