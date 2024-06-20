@@ -53,7 +53,7 @@ public class VendasDAO {
         Conexao conexao = new Conexao();
         try {
             PreparedStatement sql = conexao.getConexao()
-                    .prepareStatement("INSERT INTO Vendas (quantidade_venda, "
+                    .prepareStatement("INSERT INTO vendas (quantidade_venda, "
                             + "data_venda, valor_venda, id_cliente, id_produto, "
                             + "id_funcionario) VALUES (?,?,?,?,?,?)");
             sql.setInt(1, t.getQuantidade_venda());

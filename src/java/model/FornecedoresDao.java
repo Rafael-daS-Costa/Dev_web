@@ -13,7 +13,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
         Conexao conexao = new Conexao();
         Fornecedores categoria = new Fornecedores();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Fornecedores WHERE id = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM fornecedores WHERE id = ? ");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
 
@@ -44,7 +44,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
 
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO Fornecedores (razao_social, cnpj, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO fornecedores (razao_social, cnpj, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             sql.setString(1, t.getRazao_social());
             sql.setString(2, t.getCnpj());
             sql.setString(3, t.getEndereco());
@@ -67,7 +67,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
     public void update(Fornecedores t) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE Fornecedores SET razao_social = ?, cnpj = ?, endereco = ?, bairro = ?, cidade = ?, uf = ?, cep = ?, telefone = ?, email = ?  WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE fornecedores SET razao_social = ?, cnpj = ?, endereco = ?, bairro = ?, cidade = ?, uf = ?, cep = ?, telefone = ?, email = ?  WHERE ID = ? ");
             sql.setString(1, t.getRazao_social());
             sql.setString(2, t.getCnpj());
             sql.setString(3, t.getEndereco());
@@ -91,7 +91,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
     public void delete(int id) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM Fornecedores WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM fornecedores WHERE ID = ? ");
             sql.setInt(1, id);
             sql.executeUpdate();
 
@@ -108,7 +108,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
         ArrayList<Fornecedores> meusFornecedores = new ArrayList();
         Conexao conexao = new Conexao();
         try {
-            String selectSQL = "SELECT * FROM Fornecedores";
+            String selectSQL = "SELECT * FROM fornecedores";
             PreparedStatement preparedStatement;
             preparedStatement = conexao.getConexao().prepareStatement(selectSQL);
             ResultSet resultado = preparedStatement.executeQuery();
