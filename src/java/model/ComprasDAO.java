@@ -13,7 +13,7 @@ public class ComprasDAO implements Dao<Compras> {
         Conexao conexao = new Conexao();
         Compras categoria = new Compras();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Compras WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM compras WHERE id = ? ");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
 
@@ -41,7 +41,7 @@ public class ComprasDAO implements Dao<Compras> {
 
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO Compras (quantidade_compra, data_compra, valor_compra, id_fornecedor, id_produto, id_funcionario) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO compras (quantidade_compra, data_compra, valor_compra, id_fornecedor, id_produto, id_funcionario) VALUES (?, ?, ?, ?, ?, ?)");
             sql.setInt(1, t.getQuantidade_compra());
             sql.setString(2, t.getData_compra());
             sql.setInt(3, t.getValor_compra());
@@ -51,7 +51,7 @@ public class ComprasDAO implements Dao<Compras> {
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("Query de insert (compra) incorreta");
+            System.err.println("Query de insert (compras) incorreta");
         } finally {
             conexao.closeConexao();
         }
@@ -61,7 +61,7 @@ public class ComprasDAO implements Dao<Compras> {
     public void update(Compras t) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE Compras SET quantidade_compra = ?, data_compra = ?, valor_compra = ?, id_fornecedor = ?, id_produto = ?, id_funcionario = ? WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE compras SET quantidade_compra = ?, data_compra = ?, valor_compra = ?, id_fornecedor = ?, id_produto = ?, id_funcionario = ? WHERE id = ? ");
             sql.setInt(1, t.getQuantidade_compra());
             sql.setString(2, t.getData_compra());
             sql.setInt(3, t.getValor_compra());
@@ -72,7 +72,7 @@ public class ComprasDAO implements Dao<Compras> {
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("Query de update (alterar compra) incorreta");
+            System.err.println("Query de update (alterar compras) incorreta");
         } finally {
             conexao.closeConexao();
         }
@@ -82,12 +82,12 @@ public class ComprasDAO implements Dao<Compras> {
     public void delete(int id) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM Compras WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM compras WHERE id = ? ");
             sql.setInt(1, id);
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("Query de delete (excluir compra) incorreta");
+            System.err.println("Query de delete (excluir compras) incorreta");
         } finally {
             conexao.closeConexao();
         }
@@ -99,7 +99,7 @@ public class ComprasDAO implements Dao<Compras> {
         ArrayList<Compras> meusCompras = new ArrayList();
         Conexao conexao = new Conexao();
         try {
-            String selectSQL = "SELECT * FROM Compras";
+            String selectSQL = "SELECT * FROM compras";
             PreparedStatement preparedStatement;
             preparedStatement = conexao.getConexao().prepareStatement(selectSQL);
             ResultSet resultado = preparedStatement.executeQuery();
@@ -118,7 +118,7 @@ public class ComprasDAO implements Dao<Compras> {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Query de select (GetAll - categorias) incorreta");
+            System.err.println("Query de select (GetAll - compras) incorreta");
         } finally {
             conexao.closeConexao();
         }

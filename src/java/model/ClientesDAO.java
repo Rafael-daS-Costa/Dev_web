@@ -13,7 +13,7 @@ public class ClientesDAO {
         Conexao conexao = new Conexao();
         Clientes clientes = new Clientes();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Clientes WHERE id = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM clientes WHERE id = ? ");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
 
@@ -44,7 +44,7 @@ public class ClientesDAO {
 
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO Clientes (nome, cpf, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO clientes (nome, cpf, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             sql.setString(1, t.getNome());
             sql.setString(2, t.getCpf());
             sql.setString(3, t.getEndereco());
@@ -65,7 +65,7 @@ public class ClientesDAO {
     public void update(Clientes t) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE Clientes SET nome = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, uf = ?, cep = ?, email = ?  WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE clientes SET nome = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, uf = ?, cep = ?, email = ?  WHERE ID = ? ");
             sql.setString(1, t.getNome());
             sql.setString(2, t.getCpf());
             sql.setString(3, t.getEndereco());
@@ -121,7 +121,7 @@ public class ClientesDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (ListaDeClientes) incorreta");
+            throw new RuntimeException("Query de select (clientes) incorreta");
         } finally {
             conexao.closeConexao();
         }

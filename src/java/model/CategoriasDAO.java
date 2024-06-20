@@ -13,7 +13,7 @@ public class CategoriasDAO implements Dao<Categorias> {
         Conexao conexao = new Conexao();
         Categorias categoria = new Categorias();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Categorias WHERE id = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM categorias WHERE id = ? ");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
 
@@ -36,7 +36,7 @@ public class CategoriasDAO implements Dao<Categorias> {
 
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO Categorias (nome_categoria) VALUES (?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO categorias (nome_categoria) VALUES (?)");
             sql.setString(1, t.getNome_categoria());
             sql.executeUpdate();
 
@@ -51,7 +51,7 @@ public class CategoriasDAO implements Dao<Categorias> {
     public void update(Categorias t) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE Categorias SET nome_categoria = ?  WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE categorias SET nome_categoria = ?  WHERE id = ? ");
             sql.setString(1, t.getNome_categoria());
             sql.setInt(2, t.getId());
             sql.executeUpdate();
@@ -67,7 +67,7 @@ public class CategoriasDAO implements Dao<Categorias> {
     public void delete(int id) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM Categorias WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM categorias WHERE id = ? ");
             sql.setInt(1, id);
             sql.executeUpdate();
 
@@ -84,7 +84,7 @@ public class CategoriasDAO implements Dao<Categorias> {
         ArrayList<Categorias> meusCategorias = new ArrayList();
         Conexao conexao = new Conexao();
         try {
-            String selectSQL = "SELECT * FROM Categorias";
+            String selectSQL = "SELECT * FROM categorias";
             PreparedStatement preparedStatement;
             preparedStatement = conexao.getConexao().prepareStatement(selectSQL);
             ResultSet resultado = preparedStatement.executeQuery();
