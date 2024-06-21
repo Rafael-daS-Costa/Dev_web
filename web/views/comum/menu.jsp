@@ -21,6 +21,7 @@
                             <a class="nav-link" href="/aplicacaoMVC/AutenticaController?acao=Login">Login</a>
                             <a class="nav-link" href="/aplicacaoMVC/MostrarProdutos">Produtos</a>
                             <a class="nav-link" href="/aplicacaoMVC/CadastrarClientes">Cadastro de clientes</a>
+                            <a class="nav-link" href="/aplicacaoMVC/CadastrarVenda">Cadastro de vendas</a>
                 <%    }
                     }%>
 
