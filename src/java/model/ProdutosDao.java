@@ -57,7 +57,7 @@ public class ProdutosDao implements Dao<Produtos> {
             PreparedStatement sql = conexao.getConexao()
                     .prepareStatement("INSERT INTO produtos (nome_produto, "
                             + "descricao, preco_compra, preco_venda, "
-                            + "quantidade_disponivel, liberado_venda, "
+                            + "quantidade_disponível, liberado_venda, "
                             + "id_categoria) VALUES (?,?,?,?,?,?,?)");
             sql.setString(1, t.getNome_produto());
             sql.setString(2, t.getDescricao());
@@ -82,7 +82,7 @@ public class ProdutosDao implements Dao<Produtos> {
             PreparedStatement sql = conexao.getConexao()
                     .prepareStatement("UPDATE produtos SET nome_produto = ?, "
                             + "descricao = ?, preco_compra = ?, preco_venda = ?, "
-                            + "quantidade_disponivel = ?, liberado_venda = ?, "
+                            + "quantidade_disponível = ?, liberado_venda = ?, "
                             + "id_categoria = ?  WHERE id = ? ");
             
             sql.setString(1, t.getNome_produto());
