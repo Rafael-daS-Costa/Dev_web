@@ -29,8 +29,8 @@
                         <input
                             type="text"
                             class="form-control"
-                            name="razao-social"
-                            id="razao-social"
+                            name="razao_social"
+                            id="razao_social"
                             aria-describedby="helpId"
                             placeholder=""
                             required="true"
@@ -59,8 +59,8 @@
                         <input
                             type="text"
                             class="form-control"
-                            name="endereço"
-                            id="endereço"
+                            name="endereco"
+                            id="endereco"
                             aria-describedby="helpId"
                             placeholder=""
                             required="true"
