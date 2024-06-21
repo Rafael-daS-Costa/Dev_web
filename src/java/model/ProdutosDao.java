@@ -36,7 +36,7 @@ public class ProdutosDao implements Dao<Produtos> {
                     produtos.setPreco_venda(Double
                             .parseDouble(resultado.getString("preco_venda")));
                     produtos.setQuantidade_disponivel(Integer
-                            .parseInt(resultado.getString("quantidade_disponivel")));
+                            .parseInt(resultado.getString("quantidade_disponível")));
                     produtos.setLiberado_venda(resultado.getString("liberado_venda"));
                     produtos.setId_categoria(Integer.parseInt(resultado.getString("id_categoria")));
                 }

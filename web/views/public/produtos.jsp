@@ -20,7 +20,7 @@
                     ArrayList<Produtos> listaProdutos = (ArrayList<Produtos>) request.getAttribute("listaProdutos");
                     for (Produtos item : listaProdutos) {%>
 
-                <div class="card mb-2 col-sm-6">
+                <div class="card mb-2 col-sm-6 rounded">
                     <div class="card-body">
                         <strong>Número:</strong> <%= item.getId()%><br>
                         <%= item.getNome_produto() %><br>
