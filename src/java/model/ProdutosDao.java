@@ -136,12 +136,13 @@ public class ProdutosDao implements Dao<Produtos> {
                             resultado.getString("descricao"),
                             resultado.getDouble("preco_compra"),
                             resultado.getDouble("preco_venda"),
-                            resultado.getInt("quantidade_disponivel"),
+                            resultado.getInt("quantidade_disponível"),
                             resultado.getString("liberado_venda"),
                             resultado.getInt("id_categoria"));
                     meusProdutos.add(produtos);
                 }
             }
+            System.out.println(meusProdutos);
         } catch (SQLException e) {
             System.err.println("Query de select (GetAll - produtos) incorreta");
         } finally {

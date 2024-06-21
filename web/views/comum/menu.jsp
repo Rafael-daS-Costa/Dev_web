@@ -20,6 +20,7 @@
                 
                             <a class="nav-link" href="/aplicacaoMVC/MostrarComentarios">Coment&aacute;rios</a>
                             <a class="nav-link" href="/aplicacaoMVC/AutenticaController?acao=Login">Login</a>
+                            <a class="nav-link" href="/aplicacaoMVC/MostrarProdutos">Produtos</a>
                 <%    }
                     }%>
 
