@@ -18,17 +18,20 @@
                 <h3>Lista de Produtos: </h3>
                 <%
                     ArrayList<Produtos> listaProdutos = (ArrayList<Produtos>) request.getAttribute("listaProdutos");
-                    for (Produtos item : listaProdutos) {%>
+                    for (Produtos item : listaProdutos) 
+                        if (item.getQuantidade_disponivel() != 0 && item.getLiberado_venda().charAt(0) == 'S') {{%>
 
-                <div class="card mb-2 col-sm-6 rounded">
-                    <div class="card-body">
-                        <strong>Número:</strong> <%= item.getId()%><br>
-                        <%= item.getNome_produto() %><br>
-                        <strong>Descrição:</strong> <%= item.getDescricao() %><br>
-                        <strong>Preço:</strong> <%= item.getPreco_venda() %>
-                        <strong>Quantidade disponível:</strong> <%= item.getQuantidade_disponivel() %>
-                    </div>
-                </div>
+                            <div class="card mb-2 col-sm-6 rounded">
+                                <div class="card-body">
+                                    <strong>Número:</strong> <%= item.getId()%><br>
+                                    <%= item.getNome_produto() %><br>
+                                    <strong>Descrição:</strong> <%= item.getDescricao() %><br>
+                                    <strong>Preço:</strong> <%= item.getPreco_venda() %>
+                                    <strong>Quantidade disponível:</strong> <%= item.getQuantidade_disponivel() %>
+                                    <strong>Liberação para venda:</strong> <%= item.getLiberado_venda() %>
+                                </div>
+                            </div>
+                    <%  }  %>
 
                 <%  }%>
             </div>
