@@ -20,6 +20,15 @@ public class Vendas {
     
     public Vendas() {
     }
+    
+    public Vendas(int quantidade_venda, String data_venda, float valor_venda, int id_cliente, int id_produto, int id_funcionario) {
+        this.quantidade_venda = quantidade_venda;
+        this.data_venda = data_venda;
+        this.valor_venda = valor_venda;
+        this.id_cliente = id_cliente;
+        this.id_produto = id_produto;
+        this.id_funcionario = id_funcionario;
+    }
 
     public Vendas(int id, int quantidade_venda, String data_venda, float valor_venda, int id_cliente, int id_produto, int id_funcionario) {
         this.id = id;
