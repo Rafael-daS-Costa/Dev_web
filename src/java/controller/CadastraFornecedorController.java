@@ -44,7 +44,7 @@ public class CadastraFornecedorController extends HttpServlet {
             request.setAttribute("msgError", "Algum dos campos está vazio");
             rd = request.getRequestDispatcher("/views/acoesComprador/cadastraFornecedor.jsp");
             rd.forward(request, response);
-
+    
         } else {
             Fornecedores fornecedor = new Fornecedores(razao_social, cnpj, endereco, bairro, cidade, uf, cep,telefone, email);
             FornecedoresDao fornecedoresDao = new FornecedoresDao();
