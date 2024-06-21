@@ -17,10 +17,10 @@
                             <a class="nav-link" href="/aplicacaoMVC/admin/CategoriaController?acao=Listar">Categorias</a>
                             <a class="nav-link" href="/aplicacaoMVC/admin/logOut">Logout</a>
                 <%  } else { %>
-                
                             <a class="nav-link" href="/aplicacaoMVC/MostrarComentarios">Coment&aacute;rios</a>
                             <a class="nav-link" href="/aplicacaoMVC/AutenticaController?acao=Login">Login</a>
                             <a class="nav-link" href="/aplicacaoMVC/MostrarProdutos">Produtos</a>
+                            <a class="nav-link" href="/aplicacaoMVC/CadastrarClientes">Cadastro de clientes</a>
                 <%    }
                     }%>
 

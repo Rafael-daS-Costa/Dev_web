@@ -40,19 +40,21 @@ public class ClientesDAO {
         return clientes;
     }
 
-    public void insert(Clientes t) {
+    public void insert(Clientes t) throws Exception {
 
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO clientes (nome, cpf, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO clientes (nome, cpf, endereco, bairro, cidade, uf, cep, telefone, email) VALUES (?,?,?,?,?,?,?,?,?)");
             sql.setString(1, t.getNome());
             sql.setString(2, t.getCpf());
             sql.setString(3, t.getEndereco());
-            sql.setString(5, t.getBairro());
-            sql.setString(6, t.getCidade());
-            sql.setString(7, t.getUf());
-            sql.setString(8, t.getCep());
+            sql.setString(4, t.getBairro());
+            sql.setString(5, t.getCidade());
+            sql.setString(6, t.getUf());
+            sql.setString(7, t.getCep());
+            sql.setString(8, t.getTelefone());
             sql.setString(9, t.getEmail());
+            
             sql.executeUpdate();
 
         } catch (SQLException e) {
@@ -86,7 +88,7 @@ public class ClientesDAO {
     public void Excluir(Clientes clientes) throws Exception {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM clientes WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM clientes WHERE id = ? ");
             sql.setInt(1, clientes.getId());
             sql.executeUpdate();
 
