@@ -61,15 +61,17 @@ public class AutenticaController extends HttpServlet {
                 //rd.forward(request, response);
 
                 switch (funcionarioObtido.getPapel()) {
-                    case "1":
+                    case "1":  // Vendedor
                         rd = request.getRequestDispatcher("/views/acoesVendedor/teste.jsp");
                         rd.forward(request, response);
                         break;
-                    case "2":
+                    case "2":  // Comprador
                         rd = request.getRequestDispatcher("/views/acoesComprador/excluirFornecedor.jsp");
                         rd.forward(request, response);
                         break;
-                    default:
+                    default:  // Admin
+                        rd = request.getRequestDispatcher("/views/acoesAdmnistrador/updateFuncionario.jsp");
+                        rd.forward(request, response);
                         break;
                 }
 
