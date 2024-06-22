@@ -23,7 +23,7 @@
                     <%= msgError%>
                 </div>
                 <% }%>
-                <form action="/aplicacaoMVC/ExcluirCategoriaController?acao=cadastra" method="POST">
+                <form action="/aplicacaoMVC/ExcluirCategoriaController?acao=excluir" method="POST">
                     <div class="mb-3">
                         <label for="" class="form-label">Id da Categoria</label>
                         <input

@@ -31,8 +31,6 @@ public class UpdateFornecedoresController extends HttpServlet {
         RequestDispatcher rd;
         // pegando os parâmetros do request
         Map<String, String[]> parametersMap = request.getParameterMap();
-        //String id_fornecedor = request.getParameter("id_fornecedor");
-        String nome = request.getParameter("nome");
 
         if (parametersMap.values().stream().anyMatch(parameterArray -> parameterArray[0].isEmpty())) {
             // dados não foram preenchidos retorna ao formulário
