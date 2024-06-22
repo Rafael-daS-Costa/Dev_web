@@ -15,6 +15,13 @@ public class Funcionarios {
     private String senha;
     private String papel;
 
+    public Funcionarios(String nome, String cpf, String senha, String papel) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.papel = papel;
+    }
+
     public Funcionarios() {
     }
 
