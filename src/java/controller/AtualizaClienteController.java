@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
 import entidade.Clientes;
@@ -10,35 +14,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ClientesDAO;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author rafael
  */
-
-@WebServlet(name = "CadastrarClientes", urlPatterns = {"/CadastrarClientes"})
-public class CadastraClienteController extends HttpServlet {
+@WebServlet(name = "AtualizaCliente", urlPatterns = {"/AtualizaCliente"})
+public class AtualizaClienteController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         RequestDispatcher rd;
-        rd = request.getRequestDispatcher("/views/acoesVendedor/cadastraCliente.jsp");
+        rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaCliente.jsp");
         rd.forward(request, response);
-
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         RequestDispatcher rd;
         //Parâmetros do request
+        int id_cliente = Integer.parseInt(request.getParameter("id"));
         String nome_user = request.getParameter("nome");
         String cpf_user = request.getParameter("cpf");
         String endereco_user = request.getParameter("endereco");
@@ -49,7 +47,8 @@ public class CadastraClienteController extends HttpServlet {
         String telefone_user = request.getParameter("telefone");
         String email_user = request.getParameter("email");
         
-        if (nome_user.isEmpty() ||
+        if (id_cliente == 0 ||
+                nome_user.isEmpty() ||
                 cpf_user.isEmpty() ||
                 endereco_user.isEmpty() ||
                 bairro_user.isEmpty() ||
@@ -59,26 +58,32 @@ public class CadastraClienteController extends HttpServlet {
                 telefone_user.isEmpty() ||
                 email_user.isEmpty()) {
             request.setAttribute("msgError", "Preencha todos os campos, por favor.");
-            rd = request.getRequestDispatcher("/views/acoesVendedor/cadastraCliente.jsp");
+            rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaCliente.jsp");
             rd.forward(request, response);
         } else {
-            Clientes cliente = new Clientes(nome_user, cpf_user, endereco_user, bairro_user,
+            Clientes clienteObtido = new Clientes(id_cliente, nome_user, cpf_user, endereco_user, bairro_user,
             cidade_user, uf_user, cep_user, telefone_user, email_user);
             ClientesDAO clienteDAO = new ClientesDAO();
+            Clientes cliente = clienteDAO.get(id_cliente);
             
             rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
-            request.setAttribute("msgOperacaoRealizada", "Cliente criado com sucesso");
+            request.setAttribute("msgOperacaoRealizada", "Cliente atualizado com sucesso");
             request.setAttribute("link", "/aplicacaoMVC/home");
-            rd.forward(request, response);
             
-            try {
-                clienteDAO.insert(cliente);
+             try {
+                if (cliente.getId() != 0) {
+                    clienteDAO.update(clienteObtido);
+                } else {
+                    throw new Exception("Não há esse cliente para ser atualizado");
+                }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
-                throw new RuntimeException("Falha no Cadastro");
-            }
+                request.setAttribute("msgErro", "Não é possível atualizar este cliente, cheque se ele existe, por favor.");
+                rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaCliente.jsp");
+            } finally {
+                rd.forward(request, response);
+             }
         }
 
     }
-    
 }

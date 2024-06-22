@@ -126,4 +126,19 @@ public class VendasDAO {
         return minhasVendas;
     }
     
+    public void delete(int id) {
+        Conexao conexao = new Conexao();
+        try {
+            PreparedStatement sql = conexao.getConexao()
+                    .prepareStatement("DELETE FROM vendas WHERE id = ? ");
+            sql.setInt(1, id);
+            
+            sql.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query de delete (deletar vendas) incorreta");
+        } finally {
+            conexao.closeConexao();
+        }
+    }
 }

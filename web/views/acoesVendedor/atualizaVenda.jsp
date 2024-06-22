@@ -1,8 +1,3 @@
-<%-- 
-    Document   : cadastraVenda
-    Created on : 21 de jun. de 2024, 14:29:01
-    Author     : rafael
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +12,22 @@
 </head>
 <body>
     <div class="container">
-        <form action="/aplicacaoMVC/CadastrarVenda?acao=cadastro" method="POST">
+        <form action="/aplicacaoMVC/AtualizarVenda?acao=atualizacao" method="POST">
+            <div class="mb-3">
+                <label for="" class="form-label">Id Venda:</label>
+                <input
+                type="text"
+                class="form-control"
+                name="id_venda"
+                id="id_venda"
+                aria-describedby="helpId"
+                placeholder=""
+                required="true"
+                maxlength="5"
+                minlength="1"
+                />
+                <small id="helpId" class="form-text text-muted">Max 5 caracteres, mínimo 1</small>
+            </div>
             <div class="mb-3">
                 <label for="" class="form-label">Quantidade Venda:</label>
                 <input

@@ -21,7 +21,13 @@
                             <a class="nav-link" href="/aplicacaoMVC/AutenticaController?acao=Login">Login</a>
                             <a class="nav-link" href="/aplicacaoMVC/MostrarProdutos">Produtos</a>
                             <a class="nav-link" href="/aplicacaoMVC/CadastrarClientes">Cadastro de clientes</a>
+                            <a class="nav-link" href="/aplicacaoMVC/DeletarClientes">Deletar clientes</a>
+                            <a class="nav-link" href="/aplicacaoMVC/AtualizaCliente">Atualizar clientes</a>
+                            <a class="nav-link" href="/aplicacaoMVC/ListaClientes">Lista de clientes</a>
                             <a class="nav-link" href="/aplicacaoMVC/CadastrarVenda">Cadastro de vendas</a>
+                            <a class="nav-link" href="/aplicacaoMVC/ListaVendas">Lista de Vendas</a>
+                            <a class="nav-link" href="/aplicacaoMVC/DeletarVendas">Deletar Vendas</a>
+                            <a class="nav-link" href="/aplicacaoMVC/AtualizarVenda">Atualizar Venda</a>
                 <%    }
                     }%>
 
