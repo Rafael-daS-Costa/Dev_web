@@ -72,7 +72,7 @@ public class VendasDAO {
         }
     }
 
-    public void update(Vendas t) {
+    public void update(Vendas t) throws Exception {
         Conexao conexao = new Conexao();
         try {
             PreparedStatement sql = conexao.getConexao()

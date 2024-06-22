@@ -1,6 +1,6 @@
 package controller;
 
-import entidade.Clientes;
+import entidade.Vendas;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ClientesDAO;
+import model.VendasDAO;
 
 /**
  *
@@ -32,50 +32,43 @@ public class AtualizaVendaController extends HttpServlet {
 
         RequestDispatcher rd;
         //Parâmetros do request
-        int id_cliente = Integer.parseInt(request.getParameter("id"));
-        String nome_user = request.getParameter("nome");
-        String cpf_user = request.getParameter("cpf");
-        String endereco_user = request.getParameter("endereco");
-        String bairro_user = request.getParameter("bairro");
-        String cidade_user = request.getParameter("cidade");
-        String uf_user = request.getParameter("uf");
-        String cep_user = request.getParameter("cep");
-        String telefone_user = request.getParameter("telefone");
-        String email_user = request.getParameter("email");
+        int id_venda = Integer.parseInt(request.getParameter("id_venda"));
+        int quantidade_venda = Integer.parseInt(request.getParameter("quantidade_venda"));
+        String data_venda = request.getParameter("data_venda");
+        float valor_venda = Float.parseFloat(request.getParameter("valor_venda"));
+        int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+        int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
+        int id_funcionario = Integer.parseInt(request.getParameter("id_funcionario"));
         
-        if (id_cliente == 0 ||
-                nome_user.isEmpty() ||
-                cpf_user.isEmpty() ||
-                endereco_user.isEmpty() ||
-                bairro_user.isEmpty() ||
-                cidade_user.isEmpty() ||
-                uf_user.isEmpty() ||
-                cep_user.isEmpty() ||
-                telefone_user.isEmpty() ||
-                email_user.isEmpty()) {
+        if (id_venda == 0 ||
+                quantidade_venda == 0 ||
+                data_venda.isEmpty() ||
+                valor_venda == 0.0f ||
+                id_produto == 0 ||
+                id_cliente == 0 ||
+                id_funcionario == 0) {
             request.setAttribute("msgError", "Preencha todos os campos, por favor.");
-            rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaCliente.jsp");
+            rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaVenda.jsp");
             rd.forward(request, response);
         } else {
-            Clientes clienteObtido = new Clientes(id_cliente, nome_user, cpf_user, endereco_user, bairro_user,
-            cidade_user, uf_user, cep_user, telefone_user, email_user);
-            ClientesDAO clienteDAO = new ClientesDAO();
-            Clientes cliente = clienteDAO.get(id_cliente);
+            Vendas vendaObtida = new Vendas(id_venda, quantidade_venda, data_venda, valor_venda, id_cliente, id_produto, id_funcionario);
+            VendasDAO vendaDAO = new VendasDAO();
+            Vendas venda = vendaDAO.get(id_venda);
             
             rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
-            request.setAttribute("msgOperacaoRealizada", "Cliente atualizado com sucesso");
+            request.setAttribute("msgOperacaoRealizada", "Venda atualizada com sucesso");
             request.setAttribute("link", "/aplicacaoMVC/home");
             
              try {
-                if (cliente.getId() != 0) {
-                    clienteDAO.update(clienteObtido);
+                if (venda.getId() != 0) {
+                    vendaDAO.update(vendaObtida);
                 } else {
-                    throw new Exception("Não há esse cliente para ser atualizado");
+                    throw new Exception("Não há essa venda para ser atualizada");
                 }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
-                request.setAttribute("msgErro", "Não é possível atualizar este cliente, cheque se ele existe, por favor.");
-                rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaCliente.jsp");
+                request.setAttribute("msgErro", "Não é possível atualizar esta venda, cheque se ela existe, por favor.");
+                rd = request.getRequestDispatcher("/views/acoesVendedor/atualizaVenda.jsp");
             } finally {
                 rd.forward(request, response);
              }

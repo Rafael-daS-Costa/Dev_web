@@ -25,7 +25,7 @@
                                 <div class="card-body">
                                     <strong>Id:</strong> <%= item.getId()%><br>
                                     <strong>Valor da venda em reais:</strong><%= item.getValor_venda() %><br>
-                                    <strong>CPF:</strong> <%= item.getId_produto() %><br>
+                                    <strong>Id_produto:</strong> <%= item.getId_produto() %><br>
                                     <strong>Quantidade da venda:</strong> <%= item.getQuantidade_venda() %><br>
                                     <strong>Cliente:</strong> <%= item.getId_cliente() %><br>
                                     <strong>Vendedor:</strong> <%= item.getId_funcionario() %><br>
