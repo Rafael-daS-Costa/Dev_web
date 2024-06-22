@@ -14,7 +14,7 @@
             <jsp:include page="../comum/menu.jsp" />
             <div class="col-sm-6 offset-3 mt-5">
 
-                <h3>Login</h3>
+                <h3>Cadastrar fornecedor</h3>
 
                 <%
                     String msgError = (String) request.getAttribute("msgError");

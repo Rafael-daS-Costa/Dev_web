@@ -37,7 +37,7 @@
                         maxlength="50"
                         minlength="1"
                         />
-                        <small id="helpId" class="form-text text-muted">Max 50 caracteres, mínimo 3</small>
+                        <small id="helpId" class="form-text text-muted">Max 50 caracteres, mínimo 1</small>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome da Categoria</label>
