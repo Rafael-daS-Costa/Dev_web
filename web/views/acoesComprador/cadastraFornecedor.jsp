@@ -23,7 +23,7 @@
                     <%= msgError%>
                 </div>
                 <% }%>
-                <form action="/aplicacaoMVC/CadastraFornecedorController?acao=login" method="POST">
+                <form action="/aplicacaoMVC/CadastraFornecedorController?acao=cadastra" method="POST">
                     <div class="mb-3">
                         <label for="" class="form-label">Razão-Social</label>
                         <input
