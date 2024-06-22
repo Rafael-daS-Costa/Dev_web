@@ -66,7 +66,7 @@ public class AutenticaController extends HttpServlet {
                         rd.forward(request, response);
                         break;
                     case "2":
-                        rd = request.getRequestDispatcher("/views/acoesComprador/cadastraFornecedor.jsp");
+                        rd = request.getRequestDispatcher("/views/acoesComprador/updateFornecedor.jsp");
                         rd.forward(request, response);
                         break;
                     default:
