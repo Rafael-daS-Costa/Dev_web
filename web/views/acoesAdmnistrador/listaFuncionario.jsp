@@ -19,17 +19,17 @@
 
                 <%
                     ArrayList<Funcionarios> listaFuncionarios = (ArrayList<Funcionarios>) request.getAttribute("listaFuncionarios");
-                    for (Funcionarios funcionario : listaFuncionarios) {%>
+                    for (Funcionarios item : listaFuncionarios){%>
 
-                <div class="card mb-2 col-sm-6">
-                    <div class="card-body">
-                        <strong>Id:</strong> <%= funcionario.getId()%><br>
-                        <strong>Nome:</strong> <%= funcionario.getNome()%><br>
-                        <strong>CPF</strong> <%= funcionario.getCpf()%>
-                        <strong>Senha</strong> <%= funcionario.getSenha()%>
-                        <strong>Papel</strong> <%= funcionario.getPapel()%>
-                    </div>
-                </div>
+                        <div class="card mb-2 col-sm-6">
+                            <div class="card-body">
+                                <strong>Id:</strong> <%= item.getId()%><br>
+                                <strong>Nome:</strong> <%= item.getNome()%><br>
+                                <strong>CPF</strong> <%= item.getCpf()%>
+                                <strong>Senha</strong> <%= item.getSenha()%>
+                                <strong>Papel</strong> <%= item.getPapel()%>
+                            </div>
+                        </div>
 
                 <%  }%>
             </div>

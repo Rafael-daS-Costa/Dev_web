@@ -45,6 +45,11 @@ public class UpdateFuncionarioController extends HttpServlet {
             Funcionarios funcionario = new Funcionarios(Integer.parseInt(id), nome, cpf, senha, papel);
             FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
             funcionariosDAO.update(funcionario);
+            
+            rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
+            request.setAttribute("msgOperacaoRealizada", "Funcionario atualizado com sucesso");
+            request.setAttribute("link", "/aplicacaoMVC/home");
+            rd.forward(request, response);
         }
     }
 }

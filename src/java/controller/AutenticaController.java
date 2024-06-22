@@ -2,6 +2,7 @@ package controller;
 
 import entidade.Funcionarios;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -69,8 +70,11 @@ public class AutenticaController extends HttpServlet {
                         rd = request.getRequestDispatcher("/views/acoesComprador/excluirFornecedor.jsp");
                         rd.forward(request, response);
                         break;
-                    default:  // Admin
-                        rd = request.getRequestDispatcher("/views/acoesAdmnistrador/updateFuncionario.jsp");
+                    default:
+                        // Admin
+                        ArrayList<Funcionarios> listaFuncionarios = funcionarioDAO.getAll();
+                        request.setAttribute("listaFuncionarios", listaFuncionarios);
+                        rd = request.getRequestDispatcher("/views/acoesAdmnistrador/listaFuncionario.jsp");
                         rd.forward(request, response);
                         break;
                 }

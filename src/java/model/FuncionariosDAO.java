@@ -75,6 +75,7 @@ public class FuncionariosDAO implements Dao<Funcionarios>{
             sql.setString(2, t.getCpf());
             sql.setString(3, t.getSenha());
             sql.setString(4, t.getPapel());
+            sql.setInt(5, t.getId());
 
             sql.executeUpdate();
 
