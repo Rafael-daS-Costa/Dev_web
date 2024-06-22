@@ -1,5 +1,6 @@
 package controller;
 
+import entidade.Fornecedores;
 import entidade.Funcionarios;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.FuncionariosDAO;
+import model.FornecedoresDao;
 
 /**
  *
@@ -67,7 +69,9 @@ public class AutenticaController extends HttpServlet {
                         rd.forward(request, response);
                         break;
                     case "2":  // Comprador
-                        rd = request.getRequestDispatcher("/views/acoesComprador/excluirFornecedor.jsp");
+                        ArrayList<Fornecedores> listaFornecedores = new FornecedoresDao().getAll();
+                        request.setAttribute("listaFornecedores", listaFornecedores);
+                        rd = request.getRequestDispatcher("/views/acoesComprador/listaFornecedores.jsp");
                         rd.forward(request, response);
                         break;
                     default:

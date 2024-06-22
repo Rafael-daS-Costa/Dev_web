@@ -20,7 +20,7 @@ import model.FuncionariosDAO;
  * @author rafael
  */
 
-@WebServlet(name = "CadastrarFuncionarios", urlPatterns = {"/CadastrarFuncionarios"})
+@WebServlet(name = "CadastraFuncionarioController", urlPatterns = {"/CadastraFuncionarioController"})
 public class CadastraFuncionarioController extends HttpServlet {
     
     @Override
@@ -53,7 +53,7 @@ public class CadastraFuncionarioController extends HttpServlet {
             Funcionarios cliente = new Funcionarios(nome, cpf, senha, papel);
             FuncionariosDAO clienteDAO = new FuncionariosDAO();
             
-            rd = request.getRequestDispatcher("/views/acoesFuncionario/cadastraFuncionario.jsp");
+            rd = request.getRequestDispatcher("/views/acoesAdmnistrador/cadastraFuncionario.jsp");
             rd.forward(request, response);
             
             try {
