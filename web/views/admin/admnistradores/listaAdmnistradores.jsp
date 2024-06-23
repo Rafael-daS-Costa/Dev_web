@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="#">
-        <title>Lista Funcionarios</title>
+        <title>Lista Admnistradores</title>
          <link href="http://localhost:8080/aplicacaoMVC/views/bootstrap/bootstrap.min.css"  rel="stylesheet">
 
     </head>
@@ -19,9 +19,9 @@
             <div class="mt-5">
 
                 <h1>Área Restrita</h1>
-                <h2>Lista de Funcionarios</h2>
+                <h2>Lista de Admnistradores</h2>
 
-                <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Incluir" class="mb-2 btn btn-primary">Incluir</a>
+                <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Incluir" class="mb-2 btn btn-primary">Incluir</a>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -36,19 +36,19 @@
                         </thead>
                         <tbody>
                             <%
-                                ArrayList<Funcionarios> listaFuncionarios = (ArrayList<Funcionarios>) request.getAttribute("listaFuncionario");
+                                ArrayList<Funcionarios> listaAdmnistradores = (ArrayList<Funcionarios>) request.getAttribute("listaAdmnistrador");
 
-                                for (Funcionarios funcionario : listaFuncionarios) {
+                                for (Funcionarios admnistrador : listaAdmnistradores) {
                                     out.println("<tr>");
-                                    out.println("<th>" + funcionario.getId() + "</th>");
-                                    out.println("<td>" + funcionario.getNome() + "</td>");
-                                    out.println("<td>" + funcionario.getCpf() + "</td>");
-                                    out.println("<td>" + funcionario.getSenha() + "</td>");
-                                    out.println("<td>" + funcionario.getPapel() + "</td>");
+                                    out.println("<th>" + admnistrador.getId() + "</th>");
+                                    out.println("<td>" + admnistrador.getNome() + "</td>");
+                                    out.println("<td>" + admnistrador.getCpf() + "</td>");
+                                    out.println("<td>" + admnistrador.getSenha() + "</td>");
+                                    out.println("<td>" + admnistrador.getPapel() + "</td>");
                                     %>
                             <td>
-                            <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Alterar&id=<%=funcionario.getId()%>" class="btn btn-warning">Alterar</a>
-                            <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Excluir&id=<%=funcionario.getId()%>" class="btn btn-danger">Excluir</a></td>
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Alterar&id=<%=admnistrador.getId()%>" class="btn btn-warning">Alterar</a>
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Excluir&id=<%=admnistrador.getId()%>" class="btn btn-danger">Excluir</a></td>
                             
                             <%   out.println("</tr>");
                                 }

@@ -76,9 +76,7 @@ public class AutenticaController extends HttpServlet {
                         break;
                     default:
                         // Admin
-                        ArrayList<Funcionarios> listaFuncionarios = funcionarioDAO.getAll();
-                        request.setAttribute("listaFuncionario", listaFuncionarios);
-                        rd = request.getRequestDispatcher("/views/admin/admnistradores/listaFuncionarios.jsp");
+                        rd = request.getRequestDispatcher("/views/admin/admnistradores/escolhaLista.jsp");
                         rd.forward(request, response);
                         break;
                 }

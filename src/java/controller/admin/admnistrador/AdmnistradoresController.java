@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.FuncionariosDAO;
 
-@WebServlet(name = "FuncionariosController", urlPatterns = {"/admin/admnistrador/FuncionariosController"})
+@WebServlet(name = "AdmnistradoresController", urlPatterns = {"/admin/admnistrador/AdmnistradoresController"})
 public class AdmnistradoresController extends HttpServlet {
 
     @Override
@@ -24,30 +24,29 @@ public class AdmnistradoresController extends HttpServlet {
 
         // get parametro ação indicando o que fazer
         String acao = (String) request.getParameter("acao");
-        Funcionarios funcionarios = new Funcionarios();
+        Funcionarios admnistrador = new Funcionarios();
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
         RequestDispatcher rd;
         int id;
         switch (acao) {
-            case "ListarFuncionario":
-                List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll();
-                //.stream().filter(f -> f.getPapel() "0").collect(Collectors.toList());
-                ArrayList<Funcionarios> arrayListFuncionario = new ArrayList<Funcionarios>(listaAdmnistradores);
-                request.setAttribute("listaFuncionario", arrayListFuncionario);
+            case "ListarAdmnistrador":
+                List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals("0")).collect(Collectors.toList());
+                ArrayList<Funcionarios> arrayListAdmnistrador = new ArrayList<Funcionarios>(listaAdmnistradores);
+                request.setAttribute("listaAdmnistrador", arrayListAdmnistrador);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/listaFuncionarios.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/listaAdmnistradores.jsp");
                 rd.forward(request, response);
 
                 break;
             case "Alterar":
                 id = Integer.parseInt(request.getParameter("id"));
-                funcionarios = funcionariosDAO.get(id);
+                admnistrador = funcionariosDAO.get(id);
 
-                request.setAttribute("funcionario", funcionarios);
+                request.setAttribute("admnistrador", admnistrador);
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formAdmnistradores.jsp");
                 rd.forward(request, response);
                 break;
 
@@ -55,21 +54,21 @@ public class AdmnistradoresController extends HttpServlet {
 
                 // get parametro ação indicando sobre qual funcionarios será a ação
                 id = Integer.parseInt(request.getParameter("id"));
-                funcionarios = funcionariosDAO.get(id);
+                admnistrador = funcionariosDAO.get(id);
 
-                request.setAttribute("funcionario", funcionarios);
+                request.setAttribute("admnistrador", admnistrador);
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formAdmnistradores.jsp");
                 rd.forward(request, response);
                 break;
             case "Incluir":
-                request.setAttribute("funcionario", funcionarios);
+                request.setAttribute("admnistrador", admnistrador);
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formAdmnistradores.jsp");
                 rd.forward(request, response);
         }
 
@@ -90,13 +89,13 @@ public class AdmnistradoresController extends HttpServlet {
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
 
         if (nome.isEmpty() || cpf.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
-            Funcionarios funcionario = new Funcionarios();
+            Funcionarios admnistrador = new Funcionarios();
             switch (btEnviar) {
                 case "Alterar":
-                    funcionario = funcionariosDAO.get(id);
+                    admnistrador = funcionariosDAO.get(id);
                 case "Excluir":
                     try {
-                    funcionario = funcionariosDAO.get(id);
+                    admnistrador = funcionariosDAO.get(id);
 
 
                 } catch (Exception ex) {
@@ -106,27 +105,27 @@ public class AdmnistradoresController extends HttpServlet {
                 break;
             }
 
-            request.setAttribute("funcionario", funcionario);
+            request.setAttribute("admnistrador", admnistrador);
             request.setAttribute("acao", btEnviar);
 
             request.setAttribute("msgError", "É necessário preencher todos os campos");
 
-            rd = request.getRequestDispatcher("/views/admin/funcionarios/formFuncionarios.jsp");
+            rd = request.getRequestDispatcher("/views/admin/admnistradores/formAdmnistradores.jsp");
             rd.forward(request, response);
 
         } else {
             
-             Funcionarios funcionarios = new Funcionarios(id, nome, cpf, senha, papel);
+             Funcionarios admnistradores = new Funcionarios(id, nome, cpf, senha, papel);
              funcionariosDAO = new FuncionariosDAO();
 
             try {
                 switch (btEnviar) {
                     case "Incluir":
-                        funcionariosDAO.insert(funcionarios);
+                        funcionariosDAO.insert(admnistradores);
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;
                     case "Alterar":
-                        funcionariosDAO.update(funcionarios);
+                        funcionariosDAO.update(admnistradores);
                         request.setAttribute("msgOperacaoRealizada", "Alteração realizada com sucesso");
                         break;
                     case "Excluir":
@@ -135,7 +134,7 @@ public class AdmnistradoresController extends HttpServlet {
                         break;
                 }
 
-                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=ListarFuncionario");
+                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 
