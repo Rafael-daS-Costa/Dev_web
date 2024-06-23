@@ -21,7 +21,7 @@
             <div class="row mt-5">
                 <div class="col-sm-4 offset-3">
                     <%
-                        Funcionarios funcionarios = (Funcionarios) request.getAttribute("funcionarios");
+                        Funcionarios funcionarios = (Funcionarios) request.getAttribute("funcionario");
                         String acao = (String) request.getAttribute("acao");
                         switch (acao) {
                             case "Incluir":

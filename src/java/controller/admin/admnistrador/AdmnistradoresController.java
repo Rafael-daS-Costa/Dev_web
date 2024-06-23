@@ -60,7 +60,7 @@ public class AdmnistradoresController extends HttpServlet {
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/excluirFuncionario.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
                 rd.forward(request, response);
                 break;
             case "Incluir":
@@ -68,7 +68,7 @@ public class AdmnistradoresController extends HttpServlet {
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/cadastraFuncionario.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
                 rd.forward(request, response);
         }
 
@@ -98,6 +98,7 @@ public class AdmnistradoresController extends HttpServlet {
                     try {
                     funcionariosDAO = new FuncionariosDAO();
                     funcionarios = funcionariosDAO.get(id);
+
 
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
@@ -135,7 +136,7 @@ public class AdmnistradoresController extends HttpServlet {
                         break;
                 }
 
-                request.setAttribute("link", "/aplicacaoMVC/admin/FuncionariosController?acao=Listar");
+                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Listar");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 
