@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.FornecedoresDAO;
+import model.FornecedoresDao;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -26,7 +26,7 @@ public class ListaFornecedoresController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                   FornecedoresDAO categoriasDAO = new FornecedoresDAO();
+                   FornecedoresDao categoriasDAO = new FornecedoresDao();
             try {
                 ArrayList<Fornecedores> listaFornecedores = categoriasDAO.getAll();
                 request.setAttribute("listaFornecedores", listaFornecedores);
