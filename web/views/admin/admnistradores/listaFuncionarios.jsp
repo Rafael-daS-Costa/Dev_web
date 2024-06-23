@@ -15,13 +15,13 @@
     </head>
     <body>
         <div class="container">
-             <jsp:include page="../../../comum/menu.jsp" />
+             <jsp:include page="../../comum/menu.jsp" />
             <div class="mt-5">
 
                 <h1>Área Restrita</h1>
                 <h2>Lista de Funcionarios</h2>
 
-                <a href="/aplicacaoMVC/admin/AdmnistradoresController?acao=Incluir" class="mb-2 btn btn-primary">Incluir</a>
+                <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Incluir" class="mb-2 btn btn-primary">Incluir</a>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -42,7 +42,7 @@
                                     %>
                             <td>
                             <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Alterar&id=<%=funcionario.getId()%>" class="btn btn-warning">Alterar</a>
-                            <a href="/aplicacaoMVC/admin/AdmnistradoresController?acao=Excluir&id=<%=funcionario.getId()%>" class="btn btn-danger">Excluir</a></td>
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Excluir&id=<%=funcionario.getId()%>" class="btn btn-danger">Excluir</a></td>
                             
                             <%   out.println("</tr>");
                                 }
