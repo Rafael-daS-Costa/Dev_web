@@ -1,4 +1,4 @@
-package controller;
+package controller.admin.admnistrador;
 
 import entidade.Funcionarios;
 import model.FuncionariosDAO;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ExcluirFuncionarioController", urlPatterns = {"/ExcluirFuncionarioController"})
+@WebServlet(name = "ExcluirFuncionarioController", urlPatterns = {"/admin/admnistrador/ExcluirFuncionarioController"})
 public class ExcluirFuncionarioController extends HttpServlet {
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

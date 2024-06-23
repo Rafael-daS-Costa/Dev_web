@@ -41,7 +41,7 @@
                                     out.println("<td>" + funcionario.getNome() + "</td>");
                                     %>
                             <td>
-                            <a href="/aplicacaoMVC/admin/AdmnistradoresController?acao=Alterar&id=<%=funcionario.getId()%>" class="btn btn-warning">Alterar</a>
+                            <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Alterar&id=<%=funcionario.getId()%>" class="btn btn-warning">Alterar</a>
                             <a href="/aplicacaoMVC/admin/AdmnistradoresController?acao=Excluir&id=<%=funcionario.getId()%>" class="btn btn-danger">Excluir</a></td>
                             
                             <%   out.println("</tr>");

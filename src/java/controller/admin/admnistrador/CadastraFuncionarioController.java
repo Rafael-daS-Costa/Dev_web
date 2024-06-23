@@ -1,4 +1,4 @@
-package controller;
+package controller.admin.admnistrador;
 
 import entidade.Funcionarios;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import model.FuncionariosDAO;
  * @author rafael
  */
 
-@WebServlet(name = "CadastraFuncionarioController", urlPatterns = {"/CadastraFuncionarioController"})
+@WebServlet(name = "CadastraFuncionarioController", urlPatterns = {"/admin/admnistrador/CadastraFuncionarioController"})
 public class CadastraFuncionarioController extends HttpServlet {
     
     @Override
