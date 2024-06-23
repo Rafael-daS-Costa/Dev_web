@@ -30,11 +30,12 @@ public class AdmnistradoresController extends HttpServlet {
         int id;
         switch (acao) {
             case "ListarFuncionario":
-                List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll().stream().filter(f -> f.getPapel() == "0").collect(Collectors.toList());
+                List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll();
+                //.stream().filter(f -> f.getPapel() "0").collect(Collectors.toList());
                 ArrayList<Funcionarios> arrayListFuncionario = new ArrayList<Funcionarios>(listaAdmnistradores);
                 request.setAttribute("listaFuncionario", arrayListFuncionario);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/listaFuncionario.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/listaFuncionarios.jsp");
                 rd.forward(request, response);
 
                 break;
@@ -46,7 +47,7 @@ public class AdmnistradoresController extends HttpServlet {
                 request.setAttribute("msgError", "");
                 request.setAttribute("acao", acao);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/updateFuncionario.jsp");
+                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
                 rd.forward(request, response);
                 break;
 
@@ -89,15 +90,13 @@ public class AdmnistradoresController extends HttpServlet {
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
 
         if (nome.isEmpty() || cpf.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
-            Funcionarios funcionarios = new Funcionarios();
+            Funcionarios funcionario = new Funcionarios();
             switch (btEnviar) {
                 case "Alterar":
-                    funcionariosDAO = new FuncionariosDAO();
-                    funcionarios = funcionariosDAO.get(id);
+                    funcionario = funcionariosDAO.get(id);
                 case "Excluir":
                     try {
-                    funcionariosDAO = new FuncionariosDAO();
-                    funcionarios = funcionariosDAO.get(id);
+                    funcionario = funcionariosDAO.get(id);
 
 
                 } catch (Exception ex) {
@@ -107,7 +106,7 @@ public class AdmnistradoresController extends HttpServlet {
                 break;
             }
 
-            request.setAttribute("funcionario", funcionarios);
+            request.setAttribute("funcionario", funcionario);
             request.setAttribute("acao", btEnviar);
 
             request.setAttribute("msgError", "É necessário preencher todos os campos");
@@ -136,7 +135,7 @@ public class AdmnistradoresController extends HttpServlet {
                         break;
                 }
 
-                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Listar");
+                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=ListarFuncionario");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 

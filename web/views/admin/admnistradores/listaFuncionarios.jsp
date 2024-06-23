@@ -27,7 +27,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Descrição</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">CPF</th>
+                                <th scope="col">Senha</th>
+                                <th scope="col">Papel</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
@@ -39,6 +42,9 @@
                                     out.println("<tr>");
                                     out.println("<th>" + funcionario.getId() + "</th>");
                                     out.println("<td>" + funcionario.getNome() + "</td>");
+                                    out.println("<td>" + funcionario.getCpf() + "</td>");
+                                    out.println("<td>" + funcionario.getSenha() + "</td>");
+                                    out.println("<td>" + funcionario.getPapel() + "</td>");
                                     %>
                             <td>
                             <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=Alterar&id=<%=funcionario.getId()%>" class="btn btn-warning">Alterar</a>

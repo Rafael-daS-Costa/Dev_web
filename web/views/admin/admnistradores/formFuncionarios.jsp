@@ -42,15 +42,27 @@
                     </div>
                     <% }%>
 
-                    <form action="/aplicacaoMVC/admin/FuncionariosController" method="POST">
+                    <form action="/aplicacaoMVC/admin/admnistrador/FuncionariosController" method="POST">
                         <input type="hidden" name="id" value="<%=funcionarios.getId()%>" class="form-control">
                         <div class="mb-3">
-                            <label for="descricao" class="form-label" >Descrição</label>
-                            <input type="text" name="descricao" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=funcionarios.getNome()%>" class="form-control">
+                            <label for="nome" class="form-label" >Nome</label>
+                            <input type="text" name="nome" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=funcionarios.getNome()%>" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cpf" class="form-label" >CPF</label>
+                            <input type="text" name="cpf" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=funcionarios.getCpf()%>" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label" >Senha</label>
+                            <input type="text" name="senha" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=funcionarios.getSenha()%>" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="papel" class="form-label" >Papel</label>
+                            <input type="text" name="papel" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=funcionarios.getPapel()%>" class="form-control">
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%>" class="btn btn-primary">
-                            <a href="/aplicacaoMVC/admin/FuncionariosController?acao=Listar" class="btn btn-danger">Retornar</a>
+                            <a href="/aplicacaoMVC/admin/admnistrador/FuncionariosController?acao=ListarFuncionario" class="btn btn-danger">Retornar</a>
                         </div>
                     </form>
 
