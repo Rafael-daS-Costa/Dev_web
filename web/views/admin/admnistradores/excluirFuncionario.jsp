@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="container">
-            <jsp:include page="../comum/menu.jsp" />
+            <jsp:include page="../../comum/menu.jsp" />
             <div class="col-sm-6 offset-3 mt-5">
 
                 <h3>Excluir funcionário</h3>

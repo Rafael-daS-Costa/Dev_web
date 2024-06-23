@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="container">
-             <jsp:include page="../../comum/menu.jsp" />
+             <jsp:include page="../../../comum/menu.jsp" />
             <div class="mt-5">
 
                 <h1>Área Restrita</h1>
