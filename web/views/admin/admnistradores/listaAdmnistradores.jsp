@@ -19,9 +19,11 @@
             <div class="mt-5">
 
                 <h1>Área Restrita</h1>
-                <h2>Lista de Admnistradores</h2>
+                <%
+                String escolha = request.getParameter("escolha"); 
+                out.println("<h2>Lista de " + escolha.substring(0,1).toUpperCase() + escolha.substring(1) + "</h2>"); %>
 
-                <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Incluir" class="mb-2 btn btn-primary">Incluir</a>
+                <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Incluir&escolha=<%=request.getAttribute("escolha")%>" class="mb-2 btn btn-primary">Incluir</a>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -47,8 +49,8 @@
                                     out.println("<td>" + admnistrador.getPapel() + "</td>");
                                     %>
                             <td>
-                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Alterar&id=<%=admnistrador.getId()%>" class="btn btn-warning">Alterar</a>
-                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Excluir&id=<%=admnistrador.getId()%>" class="btn btn-danger">Excluir</a></td>
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Alterar&id=<%=admnistrador.getId()%>&escolha=<%=request.getAttribute("escolha")%>" class="btn btn-warning">Alterar</a>
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=Excluir&id=<%=admnistrador.getId()%>&escolha=<%=request.getAttribute("escolha")%>" class="btn btn-danger">Excluir</a></td>
                             
                             <%   out.println("</tr>");
                                 }

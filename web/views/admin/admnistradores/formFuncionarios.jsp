@@ -22,16 +22,17 @@
                 <div class="col-sm-4 offset-3">
                     <%
                         Funcionarios admnistrador = (Funcionarios) request.getAttribute("admnistrador");
+                        String escolha = request.getParameter("escolha");
                         String acao = (String) request.getAttribute("acao");
                         switch (acao) {
                             case "Incluir":
-                                out.println("<h1>Incluir Admnistradores</h1>");
+                                out.println("<h1>Incluir " + escolha.substring(0,1).toUpperCase() + escolha.substring(1) + "</h1>");
                                 break;
                             case "Alterar":
-                                out.println("<h1>Alterar Admnistradores</h1>");
+                            out.println("<h1>Alterar " + escolha.substring(0,1).toUpperCase() + escolha.substring(1) + "</h1>");
                                 break;
                             case "Excluir":
-                                out.println("<h1>Excluir Admnistradores</h1>");
+                            out.println("<h1>Excluir " + escolha.substring(0,1).toUpperCase() + escolha.substring(1) + "</h1>");
                                 break;
                         }
 
@@ -61,8 +62,8 @@
                             <input type="text" name="papel" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=admnistrador.getPapel()%>" class="form-control">
                         </div>
                         <div>
-                            <input type="submit" name="btEnviar" value="<%=acao%>" class="btn btn-primary">
-                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador" class="btn btn-danger">Retornar</a>
+                            <input type="submit" name="btEnviar" value="<%=acao%>,<%=escolha%>" class="btn btn-primary">
+                            <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=<%=request.getAttribute("escolha")%>" class="btn btn-danger">Retornar</a>
                         </div>
                     </form>
 

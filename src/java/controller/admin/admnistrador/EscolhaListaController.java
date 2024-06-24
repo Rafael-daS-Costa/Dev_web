@@ -26,12 +26,13 @@ public class EscolhaListaController extends HttpServlet {
         String escolha  = request.getParameter("escolha");
         String proximaPagina = "/views/admin/admnistradores/listaAdmnistradores.jsp";
 
-
-        request.setAttribute("listaAdmnistrador", getAdmnistradores());
+        String papelFuncionario = "0";
+        request.setAttribute("escolha", escolha);
         if (escolha.equals("vendedores")) {
-            proximaPagina = "/views/admin/admnistradores/listaVendedores.jsp";
+            papelFuncionario = "1";
         }
         rd = request.getRequestDispatcher(proximaPagina);
+        request.setAttribute("listaAdmnistrador", getFuncionarios(papelFuncionario));
         rd.forward(request, response);
     }
 
@@ -42,8 +43,8 @@ public class EscolhaListaController extends HttpServlet {
     }
     
 
-    private ArrayList<Funcionarios> getAdmnistradores() {
-        List<Funcionarios> listaAdmnistradores = this.funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals("0")).collect(Collectors.toList());  // Filtra apenas admnistradores
+    private ArrayList<Funcionarios> getFuncionarios(String papel) {
+        List<Funcionarios> listaAdmnistradores = this.funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals(papel)).collect(Collectors.toList());  // Filtra apenas admnistradores
         return new ArrayList<Funcionarios>(listaAdmnistradores);
     }
 }
