@@ -15,6 +15,7 @@
         >
             <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=admnistradores" class="btn btn-primary">Admnistradores</a>
             <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=vendedores" class="btn btn-primary">Vendedores</a>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=compradores" class="btn btn-primary">Compradores</a>
         </div>
         
         

@@ -28,8 +28,16 @@ public class EscolhaListaController extends HttpServlet {
 
         String papelFuncionario = "0";
         request.setAttribute("escolha", escolha);
-        if (escolha.equals("vendedores")) {
-            papelFuncionario = "1";
+        switch(escolha) {
+            case "admnistradores":
+                papelFuncionario = "0";
+                break;
+            case "vendedores":
+                papelFuncionario = "1";
+                break;
+            default:
+                papelFuncionario = "2";
+                break;
         }
         rd = request.getRequestDispatcher(proximaPagina);
         request.setAttribute("listaAdmnistrador", getFuncionarios(papelFuncionario));

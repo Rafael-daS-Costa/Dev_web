@@ -59,7 +59,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="papel" class="form-label" >Papel</label>
-                            <input type="text" name="papel" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=admnistrador.getPapel()%>" class="form-control">
+                            <input type="text" name="papel" <%= acao.equals("Excluir") || acao.equals("Alterar") ? "Readonly" : ""%> value="<%=admnistrador.getPapel()%>" class="form-control">
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%>,<%=escolha%>" class="btn btn-primary">
