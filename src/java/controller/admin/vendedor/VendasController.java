@@ -31,7 +31,7 @@ public class VendasController extends HttpServlet {
         Funcionarios vendedor = (Funcionarios) request.getSession().getAttribute("funcionario");
         int id;
         switch (acao) {
-            case "ListarCliente":
+            case "ListarVenda":
                 List<Vendas> listVendas = vendasDAO.getAll().stream().filter(v -> v.getId_funcionario() == vendedor.getId()).collect(Collectors.toList());
                 ArrayList<Vendas> arrayListVendas = new ArrayList<>(listVendas);
                 request.setAttribute("listaVendas", arrayListVendas);
@@ -140,7 +140,7 @@ public class VendasController extends HttpServlet {
                 
                 String acao = request.getParameter("btEnviar");
                 request.setAttribute("acao", "acao");
-                request.setAttribute("link", "/aplicacaoMVC/admin/vendedor/VendasController?acao=ListarCliente");
+                request.setAttribute("link", "/aplicacaoMVC/admin/vendedor/VendasController?acao=ListarVenda");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 

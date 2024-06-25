@@ -90,7 +90,7 @@ public class ClientesController extends HttpServlet {
         String cep = request.getParameter("cep");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");        
-        String btEnviar = request.getParameter("btEnviar").split(",")[0];
+        String btEnviar = request.getParameter("btEnviar").split(" ")[0];
 
         RequestDispatcher rd;
 
