@@ -7,7 +7,10 @@ import model.ClientesDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ClientesController", urlPatterns = {"/admin/vendedor/ClientesController"})
-public class ClientesController {
+public class ClientesController extends HttpServlet {
     ClientesDAO clientesDAO = new ClientesDAO();
 
     @Override
@@ -29,9 +32,9 @@ public class ClientesController {
         RequestDispatcher rd;
         int id;
         switch (acao) {
-            case "ListarAdmnistrador":
+            case "ListarCliente":
                 ArrayList<Clientes> arrayListAdmnistrador = clientesDAO.ListaDeClientes();;
-                request.setAttribute("listaCliente", arrayListAdmnistrador);
+                request.setAttribute("listaClientes", arrayListAdmnistrador);
 
                 rd = request.getRequestDispatcher("/views/admin/vendedores/listaClientes.jsp");
                 rd.forward(request, response);
@@ -80,7 +83,7 @@ public class ClientesController {
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
-        String endereco = request.getParameter("enddereco");
+        String endereco = request.getParameter("endereco");
         String bairro = request.getParameter("bairro");
         String cidade = request.getParameter("cidade");
         String uf = request.getParameter("uf");
@@ -140,13 +143,15 @@ public class ClientesController {
                 
                 String acao = request.getParameter("btEnviar");
                 request.setAttribute("acao", "acao");
-                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador");
+                request.setAttribute("link", "/aplicacaoMVC/admin/vendedor/ClientesController?acao=ListarCliente");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 
             } catch (IOException | ServletException ex) {
                 System.out.println(ex.getMessage());
                 throw new RuntimeException("Falha em uma query para cadastro de cliente");
+            } catch (Exception ex) {
+                Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

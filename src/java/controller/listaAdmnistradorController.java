@@ -19,7 +19,7 @@ public class listaAdmnistradorController extends HttpServlet {
                    FuncionariosDAO funcionarioDAO = new FuncionariosDAO();
             try {
                 ArrayList<Funcionarios> listaAdmnistradores = funcionarioDAO.getAll();
-                request.setAttribute("listaAdmnistradores", listaAdmnistradores);
+                request.setAttribute("listaAdmnistrador", listaAdmnistradores);
                 RequestDispatcher rd = request.getRequestDispatcher("/views/acoesAdmnistrador/listaAdmnistrador.jsp");
                 rd.forward(request, response);
                 

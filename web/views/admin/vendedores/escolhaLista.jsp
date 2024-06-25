@@ -13,8 +13,8 @@
         <div
             class="row justify-content-center align-items-center g-2"
         >
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=clientes" class="btn btn-primary">Operações cliente</a>
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=vendas" class="btn btn-primary">Operações vendas</a>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=clientes" class="btn btn-primary">Operações de cliente</a>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=vendas" class="btn btn-primary">Operações de vendas</a>
         </div>
         
         

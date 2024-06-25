@@ -46,7 +46,7 @@
                         <input type="hidden" name="id" value="<%=cliente.getId()%>" class="form-control">
                         <div class="mb-3">
                             <label for="nome" class="form-label" >Nome</label>
-                            <input type="text" name="nome" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=cliente.getNome()%>" class="form-control">
+                            <input type="text" name="nome" <%= acao.equals("Excluir") ? "Readonly" : ""%> <%=acao.equals("Incluir") ? "" : "value= \"" + cliente.getNome() + "\"" %>  class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="cpf" class="form-label" >CPF</label>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="cidade" class="form-label" >Cidade</label>
-                            <input type="text" name="cidade" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=cliente.getCidade()%>" class="form-control">
+                            <input type="text" name="cidade" <%= acao.equals("Excluir") ? "Readonly" : ""%> <%=acao.equals("Incluir") ? "" : "value= \"" + cliente.getNome() + "\"" %> class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="uf" class="form-label" >UF</label>
@@ -82,7 +82,7 @@
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%>" class="btn btn-primary">
-                            <a href="/aplicacaoMVC/admin/vendedor/ClientesController?acao=ListarAdmnistrador>" class="btn btn-danger">Retornar</a>
+                            <a href="/aplicacaoMVC/admin/vendedor/ClientesController?acao=ListarCliente" class="btn btn-danger">Retornar</a>
                         </div>
                     </form>
 
