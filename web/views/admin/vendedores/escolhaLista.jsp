@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,15 +7,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="#">
-        <title>Seleção de operações</title>
+        <title>SeleÃ§Ã£o de operaÃ§Ãµes</title>
         <link href="http://localhost:8080/aplicacaoMVC/views/bootstrap/bootstrap.min.css"  rel="stylesheet">
     </head>
     <body>
         <div
             class="row justify-content-center align-items-center g-2"
         >
-            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=clientes" class="btn btn-primary">Operações de cliente</a>
-            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=vendas" class="btn btn-primary">Operações de vendas</a>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=clientes" class="btn btn-primary">OperaÃ§Ãµes de cliente</a>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=vendas" class="btn btn-primary">OperaÃ§Ãµes de vendas</a>
         </div>
         
         
