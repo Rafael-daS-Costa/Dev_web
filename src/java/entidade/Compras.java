@@ -7,13 +7,11 @@ public class Compras {
     int valor_compra;
     int id_fornecedor;
     int id_produto;
-    int id_comprador;
     int id_funcionario;
     
     public Compras() {
         this.id = 0;
         this.data_compra = "";
-        this.id_comprador = 0;
         this.id_fornecedor = 0;
         this.id_produto = 0;
         this.valor_compra = 0;

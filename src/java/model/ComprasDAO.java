@@ -21,7 +21,7 @@ public class ComprasDAO implements Dao<Compras> {
                 while (resultado.next()) {
                     categoria.setId(Integer.parseInt(resultado.getString("id")));
                     categoria.setQuantidade_compra(Integer.parseInt(resultado.getString("quantidade_compra")));
-                    categoria.setData_compra(resultado.getString("DESCRICAO"));
+                    categoria.setData_compra(resultado.getString("data_compra"));
                     categoria.setValor_compra(Integer.parseInt(resultado.getString("valor_compra")));
                     categoria.setId_fornecedor(Integer.parseInt(resultado.getString("id_fornecedor")));
                     categoria.setId_produto(Integer.parseInt(resultado.getString("id_produto")));
@@ -29,7 +29,7 @@ public class ComprasDAO implements Dao<Compras> {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Query de select (get categoria) incorreta");
+            System.err.println("Query de select (get compras) incorreta");
         } finally {
             conexao.closeConexao();
         }

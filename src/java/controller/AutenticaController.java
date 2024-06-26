@@ -71,7 +71,7 @@ public class AutenticaController extends HttpServlet {
                     case "2":  // Comprador
                         ArrayList<Fornecedores> listaFornecedores = new FornecedoresDao().getAll();
                         request.setAttribute("listaFornecedores", listaFornecedores);
-                        rd = request.getRequestDispatcher("/views/acoesComprador/listaFornecedores.jsp");
+                        rd = request.getRequestDispatcher("/views/admin/compradores/escolhaLista.jsp");
                         rd.forward(request, response);
                         break;
                     default:
