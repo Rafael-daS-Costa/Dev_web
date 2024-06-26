@@ -62,7 +62,7 @@
                             <input type="text" name="papel" <%= acao.equals("Excluir") || acao.equals("Alterar") ? "Readonly" : ""%> value="<%=admnistrador.getPapel()%>" class="form-control">
                         </div>
                         <div>
-                            <input type="submit" name="btEnviar" value="<%=acao%>,<%=escolha%>" class="btn btn-primary">
+                            <input type="submit" name="btEnviar" value="<%=acao%> <%=escolha%>" class="btn btn-primary">
                             <a href="/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=<%=request.getAttribute("escolha")%>" class="btn btn-danger">Retornar</a>
                         </div>
                     </form>

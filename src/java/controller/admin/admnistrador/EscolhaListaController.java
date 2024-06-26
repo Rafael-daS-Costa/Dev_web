@@ -1,6 +1,7 @@
 package controller.admin.admnistrador;
 
 import entidade.Funcionarios;
+import entidade.Produtos;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import model.FuncionariosDAO;
+import model.ProdutosDao;
 
 @WebServlet(name = "EscolhaListaController", urlPatterns = {"/admin/admnistrador/EscolhaListaController"})
 public class EscolhaListaController extends HttpServlet {
@@ -26,7 +28,7 @@ public class EscolhaListaController extends HttpServlet {
         String escolha  = request.getParameter("escolha");
         String proximaPagina = "/views/admin/admnistradores/listaAdmnistradores.jsp";
 
-        String papelFuncionario = "0";
+        String papelFuncionario = null;
         request.setAttribute("escolha", escolha);
         switch(escolha) {
             case "admnistradores":
@@ -35,12 +37,16 @@ public class EscolhaListaController extends HttpServlet {
             case "vendedores":
                 papelFuncionario = "1";
                 break;
+            case "relatorioProdutos":
+                proximaPagina = "/views/admin/admnistradores/relatorioProdutos.jsp";
+                request.setAttribute("listaProdutos", new ProdutosDao().getAll());
+                break;
             default:
                 papelFuncionario = "2";
                 break;
         }
         rd = request.getRequestDispatcher(proximaPagina);
-        request.setAttribute("listaAdmnistrador", getFuncionarios(papelFuncionario));
+        if (papelFuncionario != null) request.setAttribute("listaAdmnistrador", getFuncionarios(papelFuncionario));
         rd.forward(request, response);
     }
 

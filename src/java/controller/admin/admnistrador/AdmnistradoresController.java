@@ -96,8 +96,8 @@ public class AdmnistradoresController extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String senha = request.getParameter("senha");
         String papel = request.getParameter("papel");
-        String btEnviar = request.getParameter("btEnviar").split(",")[0];
-        String escolha = request.getParameter("btEnviar").split(",")[1];
+        String btEnviar = request.getParameter("btEnviar").split(" ")[0];
+        String escolha = request.getParameter("btEnviar").split(" ")[1];
 
         RequestDispatcher rd;
 
@@ -149,7 +149,7 @@ public class AdmnistradoresController extends HttpServlet {
                 }
                 
                 request.setAttribute("listaAdmnistrador", getFuncionarios(papel));
-                escolha = request.getParameter("btEnviar").split(",")[1];
+                escolha = request.getParameter("btEnviar").split(" ")[1];
                 request.setAttribute("escolha", escolha);
                 request.setAttribute("acao", "ListarAdmnistrador");
                 request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=" + escolha);
