@@ -14,6 +14,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.ProdutosDao;
+import entidade.Produtos;
 import model.VendasDAO;
 
 @WebServlet(name = "VendasController", urlPatterns = {"/admin/vendedor/VendasController"})
@@ -125,8 +128,20 @@ public class VendasController extends HttpServlet {
             try {
                 switch (btEnviar) {
                     case "Incluir":
-                        vendasDAO.insert(venda);
-                        request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
+                        String msgOperacaoRealizada = "Inclusão realizada com sucesso";
+                        ProdutosDao produtosDao = new ProdutosDao();
+                        Produtos produto = produtosDao.get(venda.getId_produto());
+
+                        if (produto.getLiberado_venda().equals("N")) {
+                            msgOperacaoRealizada = "Falha na inclusão. Produto não está liberado para venda.";
+                        }
+                        else if (produto.getQuantidade_disponivel() > 0) {
+                            msgOperacaoRealizada = "Falha na inclusão. A quantidade do produto no estoque é 0.";
+                        }
+                        else {
+                            vendasDAO.insert(venda);
+                        }
+                        request.setAttribute("msgOperacaoRealizada",msgOperacaoRealizada);
                         break;
                     case "Alterar":
                         vendasDAO.update(venda);
