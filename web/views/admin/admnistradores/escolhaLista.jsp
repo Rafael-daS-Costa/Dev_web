@@ -18,7 +18,7 @@
             <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=vendedores" class="btn btn-primary">Vendedores</a>
             <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=compradores" class="btn btn-primary">Compradores</a>
             <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioProdutos" class="btn btn-primary">Relatório de Produtos</a>
-            <!-- TODO: <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioVendas" class="btn btn-primary">Relat�rio de Vendas</a> -->
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioVendas" class="btn btn-primary">Relatório de Vendas</a>
         </div>
         
         

@@ -27,8 +27,8 @@
                                     <%= item.getNome_produto() %><br>
                                     <strong>Descrição:</strong> <%= item.getDescricao() %><br>
                                     <strong>Preço:</strong> <%= item.getPreco_venda() %>
-                                    <strong>Quantidade disponível:</strong> <%= item.getQuantidade_disponivel() %>
-                                    <strong>Liberação para venda:</strong> <%= item.getLiberado_venda() %>
+                                    <!-- <strong>Quantidade disponível:</strong> <%= item.getQuantidade_disponivel() %> -->
+                                    <!--<strong>Liberação para venda:</strong> <%= item.getLiberado_venda() %> -->
                                 </div>
                             </div>
                     <%  }  %>
