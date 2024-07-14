@@ -37,54 +37,29 @@ public class AdmnistradoresController extends HttpServlet {
         Funcionarios admnistrador = new Funcionarios();
         RequestDispatcher rd;
         int id;
-        switch (acao) {
-            case "ListarAdmnistrador":
-                List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals(papelChar)).collect(Collectors.toList());
-                ArrayList<Funcionarios> arrayListAdmnistrador = new ArrayList<Funcionarios>(listaAdmnistradores);
-                request.setAttribute("listaAdmnistrador", arrayListAdmnistrador);
-                request.setAttribute("escolha", escolha);
 
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/listaAdmnistradores.jsp");
-                rd.forward(request, response);
-
-                break;
-            case "Alterar":
+        if (acao.equals("ListarAdmnistrador")) {
+            List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals(papelChar)).collect(Collectors.toList());
+            ArrayList<Funcionarios> arrayListAdmnistrador = new ArrayList<Funcionarios>(listaAdmnistradores);
+            request.setAttribute("listaAdmnistrador", arrayListAdmnistrador);
+            rd = request.getRequestDispatcher("/views/admin/admnistradores/listaAdmnistradores.jsp");
+        }
+        else {
+            request.setAttribute("admnistrador", admnistrador);
+            if (acao.equals("Alterar") || acao.equals("Excluir")) {
                 id = Integer.parseInt(request.getParameter("id"));
                 admnistrador = funcionariosDAO.get(id);
+            }
+            request.setAttribute("admnistrador", admnistrador);
+            request.setAttribute("msgError", "");
+            request.setAttribute("acao", acao);
+            request.setAttribute("papelFuncionario", getPapelChar(escolha));
 
-                request.setAttribute("admnistrador", admnistrador);
-                request.setAttribute("msgError", "");
-                request.setAttribute("acao", acao);
-                request.setAttribute("escolha", escolha);
-
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
-                rd.forward(request, response);
-                break;
-
-            case "Excluir":
-
-                // get parametro ação indicando sobre qual funcionarios será a ação
-                id = Integer.parseInt(request.getParameter("id"));
-                admnistrador = funcionariosDAO.get(id);
-
-                request.setAttribute("admnistrador", admnistrador);
-                request.setAttribute("msgError", "");
-                request.setAttribute("acao", acao);
-                request.setAttribute("escolha", escolha);
-
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
-                rd.forward(request, response);
-                break;
-            case "Incluir":
-                request.setAttribute("admnistrador", admnistrador);
-                request.setAttribute("msgError", "");
-                request.setAttribute("acao", acao);
-                request.setAttribute("escolha", escolha);
-
-                rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
-                rd.forward(request, response);
+            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
         }
 
+        request.setAttribute("escolha", escolha);
+        rd.forward(request, response);
     }
 
     @Override
@@ -101,7 +76,7 @@ public class AdmnistradoresController extends HttpServlet {
 
         RequestDispatcher rd;
 
-        if (nome.isEmpty() || cpf.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
+        if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
             Funcionarios admnistrador = new Funcionarios();
             switch (btEnviar) {
                 case "Alterar":
@@ -121,7 +96,7 @@ public class AdmnistradoresController extends HttpServlet {
             request.setAttribute("admnistrador", admnistrador);
             request.setAttribute("acao", btEnviar);
             request.setAttribute("escolha", escolha);
-
+            request.setAttribute("papelFuncionario", getPapelChar(escolha));
             request.setAttribute("msgError", "É necessário preencher todos os campos");
 
             rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
@@ -152,6 +127,7 @@ public class AdmnistradoresController extends HttpServlet {
                 escolha = request.getParameter("btEnviar").split(" ")[1];
                 request.setAttribute("escolha", escolha);
                 request.setAttribute("acao", "ListarAdmnistrador");
+                request.setAttribute("papelFuncionario", getPapelChar(escolha));
                 request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=" + escolha);
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);

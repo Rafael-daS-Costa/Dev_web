@@ -24,6 +24,7 @@
                         Funcionarios admnistrador = (Funcionarios) request.getAttribute("admnistrador");
                         String escolha = request.getParameter("escolha");
                         String acao = (String) request.getAttribute("acao");
+                        String papelFuncionario = (String) request.getAttribute("papelFuncionario");
                         switch (acao) {
                             case "Incluir":
                                 out.println("<h1>Incluir " + escolha.substring(0,1).toUpperCase() + escolha.substring(1) + "</h1>");
@@ -47,19 +48,19 @@
                         <input type="hidden" name="id" value="<%=admnistrador.getId()%>" class="form-control">
                         <div class="mb-3">
                             <label for="nome" class="form-label" >Nome</label>
-                            <input type="text" name="nome" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=admnistrador.getNome()%>" class="form-control">
+                            <input type="text" name="nome" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%= acao.equals("Incluir") ? "" : admnistrador.getNome()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="cpf" class="form-label" >CPF</label>
-                            <input type="text" name="cpf" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=admnistrador.getCpf()%>" class="form-control">
+                            <input type="text" name="cpf" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%= acao.equals("Incluir") ? "" : admnistrador.getCpf()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label" >Senha</label>
-                            <input type="text" name="senha" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=admnistrador.getSenha()%>" class="form-control">
+                            <input type="text" name="senha" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%= acao.equals("Incluir") ? "" : admnistrador.getSenha()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="papel" class="form-label" >Papel</label>
-                            <input type="text" name="papel" <%= acao.equals("Excluir") || acao.equals("Alterar") ? "Readonly" : ""%> value="<%=admnistrador.getPapel()%>" class="form-control">
+                            <input type="text" name="papel" <%= acao.equals("Alterar") ? "" : "readonly"%> value="<%= (String) request.getAttribute("papelFuncionario")%>" class="form-control">
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%> <%=escolha%>" class="btn btn-primary">
