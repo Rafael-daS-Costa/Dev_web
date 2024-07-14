@@ -11,7 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="#">
-        <title>Formulário de Admnistrador</title>
+        <title>Formulï¿½rio de Admnistrador</title>
         <link href="http://localhost:8080/aplicacaoMVC/views/bootstrap/bootstrap.min.css"  rel="stylesheet">
     </head>
 
@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="data_compra" class="form-label" >Data</label>
-                            <input type="text" name="data_compra" placeholder="aaaa-MM-dd" maxlength="10" minlength="10" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=compra.getData_compra() %>" class="form-control">
+                            <input type="date" name="data_compra" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=compra.getData_compra() %>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="valor" class="form-label" >Valor</label>

@@ -50,15 +50,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="data_venda" class="form-label" >Data da Venda</label>
-                            <input type="text" name="data_venda" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=venda.getData_venda()%>" class="form-control">
+                            <input type="date" name="data_venda" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=acao.equals("Incluir") ? "" : venda.getData_venda()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="valor_venda" class="form-label" >Valor da Venda</label>
-                            <input type="text" name="valor_venda" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=venda.getValor_venda()%>" class="form-control">
+                            <input type="text" name="valor_venda" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=acao.equals("Incluir") ? "" : venda.getValor_venda()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="id_cliente" class="form-label" >Id do Cliente</label>
-                            <input type="text" name="id_cliente" <%= acao.equals("Excluir") || acao.equals("Alterar") ? "Readonly" : ""%> value="<%=venda.getId_cliente()%>" class="form-control">
+                            <input type="text" name="id_cliente" <%= acao.equals("Excluir") || acao.equals("Alterar") ? "Readonly" : ""%> value="<%=acao.equals("Incluir") ? "" : venda.getId_cliente()%>" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="id_produto" class="form-label" >Id do Produto</label>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="id_funcionario" class="form-label" >Id do Funcionario</label>
-                            <input type="text" name="id_funcionario" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=venda.getId_funcionario()%>" class="form-control">
+                            <input type="text" name="id_funcionario" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=acao.equals("Incluir") ? "" : venda.getId_funcionario()%>" class="form-control">
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%>" class="btn btn-primary">
