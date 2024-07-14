@@ -12,7 +12,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
     @Override
     public Fornecedores get(int id) {
         Conexao conexao = new Conexao();
-        Fornecedores categoria = new Fornecedores();
+        Fornecedores fornecedor = new Fornecedores();
         try {
             PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM fornecedores WHERE id = ? ");
             sql.setInt(1, id);
@@ -20,16 +20,16 @@ public class FornecedoresDao implements Dao<Fornecedores> {
 
             if (resultado != null) {
                 while (resultado.next()) {
-                    categoria.setId(Integer.parseInt(resultado.getString("id")));
-                    categoria.setRazao_social(resultado.getString("razao_social"));
-                    categoria.setCnpj(resultado.getString("cnpj"));
-                    categoria.setEndereco(resultado.getString("endereco"));
-                    categoria.setBairro(resultado.getString("bairro"));
-                    categoria.setCidade(resultado.getString("cidade"));
-                    categoria.setUf(resultado.getString("uf"));
-                    categoria.setCep(resultado.getString("cep"));
-                    categoria.setTelefone(resultado.getString("telefone"));
-                    categoria.setEmail(resultado.getString("email"));
+                    fornecedor.setId(Integer.parseInt(resultado.getString("id")));
+                    fornecedor.setRazao_social(resultado.getString("razao_social"));
+                    fornecedor.setCnpj(resultado.getString("cnpj"));
+                    fornecedor.setEndereco(resultado.getString("endereco"));
+                    fornecedor.setBairro(resultado.getString("bairro"));
+                    fornecedor.setCidade(resultado.getString("cidade"));
+                    fornecedor.setUf(resultado.getString("uf"));
+                    fornecedor.setCep(resultado.getString("cep"));
+                    fornecedor.setTelefone(resultado.getString("telefone"));
+                    fornecedor.setEmail(resultado.getString("email"));
                 }
             }
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class FornecedoresDao implements Dao<Fornecedores> {
         } finally {
             conexao.closeConexao();
         }
-        return categoria;
+        return fornecedor;
     }
 
     @Override
