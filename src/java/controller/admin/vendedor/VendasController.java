@@ -17,11 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ProdutosDao;
 import entidade.Produtos;
-import interfaces.ValidaIdFuncionario;
 import model.VendasDAO;
 
 @WebServlet(name = "VendasController", urlPatterns = {"/admin/vendedor/VendasController"})
-public class VendasController extends HttpServlet implements ValidaIdFuncionario {
+public class VendasController extends HttpServlet {
     VendasDAO vendasDAO = new VendasDAO();
 
     @Override

@@ -1,7 +1,6 @@
 package controller.admin.comprador;
 
 import entidade.Compras;
-import interfaces.ValidaIdFuncionario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import model.FornecedoresDao;
  * @author rafael
  */
 @WebServlet(name = "ComprasController", urlPatterns = {"/admin/comprador/ComprasController"})
-public class ComprasController extends HttpServlet implements ValidaIdFuncionario {
+public class ComprasController extends HttpServlet {
     ComprasDAO comprasDao = new ComprasDAO();
     
     @Override
@@ -150,6 +149,6 @@ public class ComprasController extends HttpServlet implements ValidaIdFuncionari
     
     private ArrayList<Compras> getCompras() {
         List<Compras> listaCompras = this.comprasDao.getAll();
-        return new ArrayList<Compras>(listaCompras);
+        return new ArrayList<>(listaCompras);
     }
 }
