@@ -50,7 +50,7 @@
                                 out.println("<td scope='col' style='border-top: 1px solid black;'></td>");
                             }
                             out.println("<td scope='col' style='border-top: 1px solid black;'>" + gv.getTotal() + "</td>");
-                            out.println("</tr>\n</tbody>\n</table>");
+                            out.println("</tr>\n</tbody>\n</table>\n</div>");
                         }
                     %>
             </div>
