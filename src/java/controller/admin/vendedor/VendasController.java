@@ -135,7 +135,7 @@ public class VendasController extends HttpServlet {
                         if (produto.getLiberado_venda().equals("N")) {
                             msgOperacaoRealizada = "Falha na inclusão. Produto não está liberado para venda.";
                         }
-                        else if (produto.getQuantidade_disponivel() > 0) {
+                        else if (produto.getQuantidade_disponivel() <= 0) {
                             msgOperacaoRealizada = "Falha na inclusão. A quantidade do produto no estoque é 0.";
                         }
                         else {
