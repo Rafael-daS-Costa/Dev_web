@@ -1,6 +1,6 @@
 package controller.admin;
 
-import entidade.Categoria;
+import entidade.Categorias;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CategoriaDAO;
+import model.CategoriasDAO;
 
 @WebServlet(name = "CategoriaController", urlPatterns = {"/admin/CategoriaController"})
 public class CategoriaController extends HttpServlet {
@@ -21,12 +21,12 @@ public class CategoriaController extends HttpServlet {
 
         // get parametro ação indicando o que fazer
         String acao = (String) request.getParameter("acao");
-        Categoria categoria = new Categoria();
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        Categorias categoria = new Categorias();
+        CategoriasDAO categoriaDAO = new CategoriasDAO();
         RequestDispatcher rd;
         switch (acao) {
             case "Listar":
-                ArrayList<Categoria> listaCategorias = categoriaDAO.getAll();
+                ArrayList<Categorias> listaCategorias = categoriaDAO.getAll();
                 request.setAttribute("listaCategorias", listaCategorias);
 
                 rd = request.getRequestDispatcher("/views/admin/categoria/listaCategorias.jsp");
@@ -69,12 +69,12 @@ public class CategoriaController extends HttpServlet {
         RequestDispatcher rd;
 
         if (descricao.isEmpty()) {
-            Categoria categoria = new Categoria();
+            Categorias categoria = new Categorias();
             switch (btEnviar) {
                 case "Alterar":
                 case "Excluir":
                     try {
-                    CategoriaDAO categoriaDAO = new CategoriaDAO();
+                    CategoriasDAO categoriaDAO = new CategoriasDAO();
                     categoria = categoriaDAO.get(id);
 
                 } catch (Exception ex) {
@@ -94,8 +94,8 @@ public class CategoriaController extends HttpServlet {
 
         } else {
             
-             Categoria categoria = new Categoria(id,descricao);
-             CategoriaDAO categoriaDAO = new CategoriaDAO();
+             Categorias categoria = new Categorias(id,descricao);
+             CategoriasDAO categoriaDAO = new CategoriasDAO();
 
             try {
                 switch (btEnviar) {
