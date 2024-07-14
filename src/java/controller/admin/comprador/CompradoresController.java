@@ -6,6 +6,8 @@ package controller.admin.comprador;
 
 import entidade.Compras;
 import entidade.Fornecedores;
+import interfaces.ValidaUF;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import model.FornecedoresDao;
  * @author rafael
  */
 @WebServlet(name = "CompradoresController", urlPatterns = {"/admin/comprador/CompradoresController"})
-public class CompradoresController extends HttpServlet {
+public class CompradoresController extends HttpServlet implements ValidaUF {
     FornecedoresDao fornecedoresDao = new FornecedoresDao();
     ComprasDAO comprasDao = new ComprasDAO();
     
@@ -93,7 +95,15 @@ public class CompradoresController extends HttpServlet {
         String btEnviar = request.getParameter("btEnviar");
         
         RequestDispatcher rd;
- 
+
+        // Valida UF
+        if (!ufEhValida(uf)) {
+            request.setAttribute("msgError", "UF não existe");
+
+            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+            rd.forward(request, response);
+        }
+
        if (razao_social.isEmpty() || cnpj.isEmpty() || endereco.isEmpty() || bairro.isEmpty() || cidade.isEmpty() || uf.isEmpty() ||
                cep.isEmpty() || telefone.isEmpty() || email.isEmpty()) {
             Fornecedores fornecedor = new Fornecedores();

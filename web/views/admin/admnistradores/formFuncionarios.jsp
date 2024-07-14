@@ -22,7 +22,7 @@
                 <div class="col-sm-4 offset-3">
                     <%
                         Funcionarios admnistrador = (Funcionarios) request.getAttribute("admnistrador");
-                        String escolha = request.getParameter("escolha");
+                        String escolha = (String) request.getAttribute("escolha");
                         String acao = (String) request.getAttribute("acao");
                         String papelFuncionario = (String) request.getAttribute("papelFuncionario");
                         switch (acao) {
@@ -60,7 +60,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="papel" class="form-label" >Papel</label>
-                            <input type="text" name="papel" <%= acao.equals("Alterar") ? "" : "readonly"%> value="<%= (String) request.getAttribute("papelFuncionario")%>" class="form-control">
+                            <input type="text" name="papel" placeholder="0" <%= acao.equals("Alterar") ? "" : "readonly"%> value="<%= (String) request.getAttribute("papelFuncionario")%>" class="form-control">
                         </div>
                         <div>
                             <input type="submit" name="btEnviar" value="<%=acao%> <%=escolha%>" class="btn btn-primary">

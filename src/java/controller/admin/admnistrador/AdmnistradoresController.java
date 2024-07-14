@@ -1,6 +1,8 @@
 package controller.admin.admnistrador;
 
 import entidade.Funcionarios;
+import interfaces.ValidaNome;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.FuncionariosDAO;
 
 @WebServlet(name = "AdmnistradoresController", urlPatterns = {"/admin/admnistrador/AdmnistradoresController"})
-public class AdmnistradoresController extends HttpServlet {
+public class AdmnistradoresController extends HttpServlet implements ValidaNome {
 
     FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
 
@@ -40,7 +42,7 @@ public class AdmnistradoresController extends HttpServlet {
 
         if (acao.equals("ListarAdmnistrador")) {
             List<Funcionarios> listaAdmnistradores = funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals(papelChar)).collect(Collectors.toList());
-            ArrayList<Funcionarios> arrayListAdmnistrador = new ArrayList<Funcionarios>(listaAdmnistradores);
+            ArrayList<Funcionarios> arrayListAdmnistrador = new ArrayList<>(listaAdmnistradores);
             request.setAttribute("listaAdmnistrador", arrayListAdmnistrador);
             rd = request.getRequestDispatcher("/views/admin/admnistradores/listaAdmnistradores.jsp");
         }
@@ -73,8 +75,19 @@ public class AdmnistradoresController extends HttpServlet {
         String papel = request.getParameter("papel");
         String btEnviar = request.getParameter("btEnviar").split(" ")[0];
         String escolha = request.getParameter("btEnviar").split(" ")[1];
-
         RequestDispatcher rd;
+        
+        request.setAttribute("acao", btEnviar);
+        request.setAttribute("escolha", escolha);
+        request.setAttribute("papelFuncionario", getPapelChar(escolha));
+
+        // Tem número no nome
+        if (!nomeEhValido(nome)) {
+            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+            request.setAttribute("admnistrador", new Funcionarios());
+            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+            rd.forward(request, response);
+        }
 
         if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
             Funcionarios admnistrador = new Funcionarios();
@@ -92,11 +105,8 @@ public class AdmnistradoresController extends HttpServlet {
                 }
                 break;
             }
-
+            
             request.setAttribute("admnistrador", admnistrador);
-            request.setAttribute("acao", btEnviar);
-            request.setAttribute("escolha", escolha);
-            request.setAttribute("papelFuncionario", getPapelChar(escolha));
             request.setAttribute("msgError", "É necessário preencher todos os campos");
 
             rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
@@ -152,7 +162,7 @@ public class AdmnistradoresController extends HttpServlet {
 
     private ArrayList<Funcionarios> getFuncionarios(String papel) {
         List<Funcionarios> listaAdmnistradores = this.funcionariosDAO.getAll().stream().filter(f -> f.getPapel().equals(papel)).collect(Collectors.toList());  // Filtra apenas admnistradores
-        return new ArrayList<Funcionarios>(listaAdmnistradores);
+        return new ArrayList<>(listaAdmnistradores);
     }
 
 }

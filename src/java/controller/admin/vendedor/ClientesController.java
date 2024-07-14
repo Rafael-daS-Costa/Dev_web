@@ -1,6 +1,8 @@
 package controller.admin.vendedor;
 
 import entidade.Clientes;
+import interfaces.ValidaNome;
+import interfaces.ValidaUF;
 import entidade.Clientes;
 import model.ClientesDAO;
 
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ClientesController", urlPatterns = {"/admin/vendedor/ClientesController"})
-public class ClientesController extends HttpServlet {
+public class ClientesController extends HttpServlet implements ValidaUF, ValidaNome {
     ClientesDAO clientesDAO = new ClientesDAO();
 
     @Override
@@ -93,6 +95,19 @@ public class ClientesController extends HttpServlet {
         String btEnviar = request.getParameter("btEnviar").split(" ")[0];
 
         RequestDispatcher rd;
+
+        if (!nomeEhValido(nome)) {
+            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+            rd.forward(request, response);
+        }
+
+        if (!ufEhValida(uf)) {
+            request.setAttribute("msgError", "UF não existe");
+
+            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+            rd.forward(request, response);
+        }
 
         if (nome.isEmpty() || cpf.isEmpty() || cpf.isEmpty() || endereco.isEmpty() || bairro.isEmpty()
         || cidade.isEmpty() || uf.isEmpty() || cep.isEmpty() || telefone.isEmpty() || email.isEmpty()) {
