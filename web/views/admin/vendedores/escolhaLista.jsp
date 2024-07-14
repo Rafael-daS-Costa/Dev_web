@@ -12,10 +12,11 @@
     </head>
     <body>
         <div
-            class="row justify-content-center align-items-center g-2"
+            class="row justify-content-center align-items-center g-2" style="width: 25%; margin: auto;"
         >
-            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=clientes" class="btn btn-primary">Operações de cliente</a>
-            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=vendas" class="btn btn-primary">Operações de vendas</a>
+            <h3 style="text-align: center; margin-bottom: 50px;">Operações de Vendedor</h3>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=clientes" class="btn btn-primary" style="margin-bottom: 5px;">Operações de cliente</a>
+            <a href="/aplicacaoMVC/admin/vendedor/EscolhaListaController?escolha=vendas" class="btn btn-primary" style="margin-bottom: 5px;">Operações de vendas</a>
         </div>
         
         

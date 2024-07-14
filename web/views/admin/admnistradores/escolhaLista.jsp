@@ -12,13 +12,14 @@
     </head>
     <body>
         <div
-            class="row justify-content-center align-items-center g-2"
+            class="row justify-content-center align-items-center g-2" style="width: 25%; margin: auto;"
         >
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=admnistradores" class="btn btn-primary">Admnistradores</a>
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=vendedores" class="btn btn-primary">Vendedores</a>
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=compradores" class="btn btn-primary">Compradores</a>
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioProdutos" class="btn btn-primary">Relatório de Produtos</a>
-            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioVendas" class="btn btn-primary">Relatório de Vendas</a>
+            <h3 style="text-align: center; margin-bottom: 50px;">Operações de Admnistrador</h3>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=admnistradores" class="btn btn-primary" style="margin-bottom: 5px;">Admnistradores</a>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=vendedores" class="btn btn-primary" style="margin-bottom: 5px;">Vendedores</a>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=compradores" class="btn btn-primary" style="margin-bottom: 5px;">Compradores</a>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioProdutos" class="btn btn-primary" style="margin-bottom: 5px;">Relatório de Produtos</a>
+            <a href="/aplicacaoMVC/admin/admnistrador/EscolhaListaController?escolha=relatorioVendas" class="btn btn-primary" style="margin-bottom: 5px;">Relatório de Vendas</a>
         </div>
         
         

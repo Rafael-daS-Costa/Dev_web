@@ -18,10 +18,11 @@
     </head>
     <body>
         <div
-            class="row justify-content-center align-items-center g-2"
+            class="row justify-content-center align-items-center g-2" style="width: 25%; margin: auto;"
         >
-            <a href="/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=compras" class="btn btn-primary">Operações de compras</a>
-            <a href="/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=fornecedores" class="btn btn-primary">Operações de fornecedor</a>
+        <h3 style="text-align: center; margin-bottom: 50px;">Operações de Comprador</h3>
+            <a href="/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=compras" class="btn btn-primary" style="margin-bottom: 5px;">Operações de compras</a>
+            <a href="/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=fornecedores" class="btn btn-primary" style="margin-bottom: 5px;">Operações de fornecedor</a>
         </div>
         
         
