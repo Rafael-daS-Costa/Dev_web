@@ -9,7 +9,8 @@ public interface ValidaIdFuncionario {
             return false;
         }
         Funcionarios funcionario = new FuncionariosDAO().get(id);
-        if (funcionario.getId() == 0 && funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty() && funcionario.getSenha().isEmpty() && funcionario.getPapel().isEmpty()) {
+        if (funcionario.getId() == 0 || funcionario.getNome() == null || funcionario.getCpf() == null
+                || funcionario.getSenha() == null || funcionario.getPapel() == null) {
             return false;
         }
         return true;

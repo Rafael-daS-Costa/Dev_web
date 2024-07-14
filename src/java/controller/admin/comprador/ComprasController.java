@@ -1,6 +1,7 @@
 package controller.admin.comprador;
 
 import entidade.Compras;
+import interfaces.ValidaIdFuncionario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import model.FornecedoresDao;
  * @author rafael
  */
 @WebServlet(name = "ComprasController", urlPatterns = {"/admin/comprador/ComprasController"})
-public class ComprasController extends HttpServlet {
+public class ComprasController extends HttpServlet implements ValidaIdFuncionario {
     ComprasDAO comprasDao = new ComprasDAO();
     
     @Override
@@ -101,12 +102,22 @@ public class ComprasController extends HttpServlet {
             request.setAttribute("compra", compra);
             request.setAttribute("acao", btEnviar);
 
-            request.setAttribute("msgError", "É necessário preencher todos os campos");
+            request.setAttribute("msgError", "É necessário preencher todos os campos. Não deve haver também quantidade e valor menores ou iguais a zero.");
 
-            rd = request.getRequestDispatcher("/views/admin/comprador/formCompras.jsp");
+            rd = request.getRequestDispatcher("/views/admin/compradores/formCompras.jsp");
             rd.forward(request, response);
 
         } else {
+           Compras compra = new Compras();
+            if (quantidade < 0 || valor < 0) {
+                request.setAttribute("compra", compra);
+                request.setAttribute("acao", btEnviar);
+
+                request.setAttribute("msgError", "Valor e quantidade não podem ser menores ou iguais a zero.");
+
+                rd = request.getRequestDispatcher("/views/admin/compradores/formCompras.jsp");
+                rd.forward(request, response);
+            }
             Compras compras = new Compras(id, quantidade, data, valor, fornecedor, produto, funcionario);
             
             try {

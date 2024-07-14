@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ProdutosDao;
 import entidade.Produtos;
+import interfaces.ValidaIdFuncionario;
 import model.VendasDAO;
 
 @WebServlet(name = "VendasController", urlPatterns = {"/admin/vendedor/VendasController"})
-public class VendasController extends HttpServlet {
+public class VendasController extends HttpServlet implements ValidaIdFuncionario {
     VendasDAO vendasDAO = new VendasDAO();
 
     @Override
@@ -96,6 +97,16 @@ public class VendasController extends HttpServlet {
 
         if (quantidade_venda.isEmpty() || data_venda.isEmpty() || valor_venda.isEmpty() || id_cliente.isEmpty() || id_produto.isEmpty()
         || id_funcionario.isEmpty()) {
+            if (Integer.parseInt(quantidade_venda) == 0 || Integer.parseInt(quantidade_venda) < 0) {
+                request.setAttribute("msgError", "A quantidade da venda deve ser maior que zero");
+                rd = request.getRequestDispatcher("/views/admin/vendedores/formVendas.jsp");
+                rd.forward(request, response);
+            }
+            if (Float.parseFloat(valor_venda) == 0 || Float.parseFloat(valor_venda) < 0) {
+                request.setAttribute("msgError", "O valor total deve ser maior que zero");
+                rd = request.getRequestDispatcher("/views/admin/vendedores/formVendas.jsp");
+                rd.forward(request, response);
+            }
             Vendas venda = new Vendas();
             switch (btEnviar) {
                 case "Alterar":
