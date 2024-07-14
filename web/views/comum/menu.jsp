@@ -14,20 +14,10 @@
                         Funcionarios funcionarioLogado = (Funcionarios) session.getAttribute("funcionarios");
                         if (funcionarioLogado != null) { %>
                             <a class="nav-link" href="/aplicacaoMVC/admin/dashboard">Dashboard</a>
-                            <a class="nav-link" href="/aplicacaoMVC/admin/CategoriaController?acao=Listar">Categorias</a>
                             <a class="nav-link" href="/aplicacaoMVC/admin/logOut">Logout</a>
                 <%  } else { %>
-                            <a class="nav-link" href="/aplicacaoMVC/MostrarComentarios">Coment&aacute;rios</a>
                             <a class="nav-link" href="/aplicacaoMVC/AutenticaController?acao=Login">Login</a>
                             <a class="nav-link" href="/aplicacaoMVC/MostrarProdutos">Produtos</a>
-                            <a class="nav-link" href="/aplicacaoMVC/CadastrarClientes">Cadastro de clientes</a>
-                            <a class="nav-link" href="/aplicacaoMVC/DeletarClientes">Deletar clientes</a>
-                            <a class="nav-link" href="/aplicacaoMVC/AtualizaCliente">Atualizar clientes</a>
-                            <a class="nav-link" href="/aplicacaoMVC/ListaClientes">Lista de clientes</a>
-                            <a class="nav-link" href="/aplicacaoMVC/CadastrarVenda">Cadastro de vendas</a>
-                            <a class="nav-link" href="/aplicacaoMVC/ListaVendas">Lista de Vendas</a>
-                            <a class="nav-link" href="/aplicacaoMVC/DeletarVendas">Deletar Vendas</a>
-                            <a class="nav-link" href="/aplicacaoMVC/AtualizarVenda">Atualizar Venda</a>
                 <%    }
                     }%>
 
