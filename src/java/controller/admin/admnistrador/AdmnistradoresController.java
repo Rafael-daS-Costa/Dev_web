@@ -1,11 +1,9 @@
 package controller.admin.admnistrador;
 
 import entidade.Funcionarios;
-import interfaces.ValidaNome;
-
+import interfaces.ValidaDados;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.FuncionariosDAO;
 
 @WebServlet(name = "AdmnistradoresController", urlPatterns = {"/admin/admnistrador/AdmnistradoresController"})
-public class AdmnistradoresController extends HttpServlet implements ValidaNome {
+public class AdmnistradoresController extends HttpServlet implements ValidaDados {
 
     FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
 
@@ -81,14 +79,6 @@ public class AdmnistradoresController extends HttpServlet implements ValidaNome 
         request.setAttribute("escolha", escolha);
         request.setAttribute("papelFuncionario", getPapelChar(escolha));
 
-        // Tem número no nome
-        if (!nomeEhValido(nome)) {
-            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
-            request.setAttribute("admnistrador", new Funcionarios());
-            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
-            rd.forward(request, response);
-        }
-
         if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || papel.isEmpty()) {
             Funcionarios admnistrador = new Funcionarios();
             switch (btEnviar) {
@@ -120,6 +110,14 @@ public class AdmnistradoresController extends HttpServlet implements ValidaNome 
             try {
                 switch (btEnviar) {
                     case "Incluir":
+                        // Tem número no nome
+                        if (!nomeEhValido(nome)) {
+                            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+                            request.setAttribute("admnistrador", new Funcionarios());
+                            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
                         funcionariosDAO.insert(admnistradores);
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;

@@ -1,17 +1,13 @@
 package controller.admin.vendedor;
 
-import entidade.Clientes;
-import interfaces.ValidaNome;
-import interfaces.ValidaUF;
+import interfaces.ValidaDados;
 import entidade.Clientes;
 import model.ClientesDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ClientesController", urlPatterns = {"/admin/vendedor/ClientesController"})
-public class ClientesController extends HttpServlet implements ValidaUF, ValidaNome {
+public class ClientesController extends HttpServlet implements ValidaDados {
     ClientesDAO clientesDAO = new ClientesDAO();
 
     @Override
@@ -96,19 +92,6 @@ public class ClientesController extends HttpServlet implements ValidaUF, ValidaN
 
         RequestDispatcher rd;
 
-        if (!nomeEhValido(nome)) {
-            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
-            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
-            rd.forward(request, response);
-        }
-
-        if (!ufEhValida(uf)) {
-            request.setAttribute("msgError", "UF não existe");
-
-            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
-            rd.forward(request, response);
-        }
-
         if (nome.isEmpty() || cpf.isEmpty() || cpf.isEmpty() || endereco.isEmpty() || bairro.isEmpty()
         || cidade.isEmpty() || uf.isEmpty() || cep.isEmpty() || telefone.isEmpty() || email.isEmpty()) {
             Clientes cliente = new Clientes();
@@ -143,6 +126,20 @@ public class ClientesController extends HttpServlet implements ValidaUF, ValidaN
             try {
                 switch (btEnviar) {
                     case "Incluir":
+                        if (!nomeEhValido(nome)) {
+                            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+                            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
+                
+                        if (!ufEhValida(uf)) {
+                            request.setAttribute("msgError", "UF não existe");
+                
+                            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
                         clientesDAO.insert(cliente);
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;

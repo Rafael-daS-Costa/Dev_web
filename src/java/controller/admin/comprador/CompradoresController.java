@@ -6,7 +6,7 @@ package controller.admin.comprador;
 
 import entidade.Compras;
 import entidade.Fornecedores;
-import interfaces.ValidaUF;
+import interfaces.ValidaDados;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import model.FornecedoresDao;
  * @author rafael
  */
 @WebServlet(name = "CompradoresController", urlPatterns = {"/admin/comprador/CompradoresController"})
-public class CompradoresController extends HttpServlet implements ValidaUF {
+public class CompradoresController extends HttpServlet implements ValidaDados {
     FornecedoresDao fornecedoresDao = new FornecedoresDao();
     ComprasDAO comprasDao = new ComprasDAO();
     
@@ -96,14 +96,6 @@ public class CompradoresController extends HttpServlet implements ValidaUF {
         
         RequestDispatcher rd;
 
-        // Valida UF
-        if (!ufEhValida(uf)) {
-            request.setAttribute("msgError", "UF não existe");
-
-            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
-            rd.forward(request, response);
-        }
-
        if (razao_social.isEmpty() || cnpj.isEmpty() || endereco.isEmpty() || bairro.isEmpty() || cidade.isEmpty() || uf.isEmpty() ||
                cep.isEmpty() || telefone.isEmpty() || email.isEmpty()) {
             Fornecedores fornecedor = new Fornecedores();
@@ -137,6 +129,14 @@ public class CompradoresController extends HttpServlet implements ValidaUF {
             try {
                 switch (btEnviar) {
                     case "Incluir":
+                        // Valida UF
+                        if (!ufEhValida(uf)) {
+                            request.setAttribute("msgError", "UF não existe");
+
+                            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
                         fornecedoresDao.insert(fornecedores);
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;
