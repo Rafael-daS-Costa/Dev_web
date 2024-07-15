@@ -13,8 +13,8 @@
         <div class="container">
             <jsp:include page="../comum/menu.jsp" />
             <div class="mt-5 d-flex justify-content-center align-items-center flex-column">
-                <h3>R&R sales</h3>
-                <h4>Os produtos listados estarão na aba de produtos.</h4>
+                <h3>Trabalho de Desenvolvimento Web de Roberto Martins e Rafael Costa</h3>
+                <h4>Aplicação para apoiar controle de vendas</h4>
             </div>
         </div>
        <script src="http://localhost:8080/aplicacaoMVC/views/bootstrap/bootstrap.bundle.min.js"></script>
