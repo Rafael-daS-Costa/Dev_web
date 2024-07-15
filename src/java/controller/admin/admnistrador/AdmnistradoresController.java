@@ -107,11 +107,18 @@ public class AdmnistradoresController extends HttpServlet implements ValidaDados
              Funcionarios admnistradores = new Funcionarios(id, nome, cpf, senha, papel);
              funcionariosDAO = new FuncionariosDAO();
 
+                request.setAttribute("listaAdmnistrador", getFuncionarios(papel));
+                escolha = request.getParameter("btEnviar").split(" ")[1];
+                request.setAttribute("escolha", escolha);
+                request.setAttribute("acao", btEnviar);
+                request.setAttribute("papelFuncionario", getPapelChar(escolha));
+                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=" + escolha);
+             
             try {
                 switch (btEnviar) {
                     case "Incluir":
                         // Tem número no nome
-                        if (!nomeEhValido(nome)) {
+                        if (!nomeEhValido(admnistradores.getNome())) {
                             request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
                             request.setAttribute("admnistrador", new Funcionarios());
                             rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
@@ -122,6 +129,13 @@ public class AdmnistradoresController extends HttpServlet implements ValidaDados
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;
                     case "Alterar":
+                        if (!nomeEhValido(admnistradores.getNome())) {
+                            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+                            request.setAttribute("admnistrador", new Funcionarios());
+                            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
                         funcionariosDAO.update(admnistradores);
                         request.setAttribute("msgOperacaoRealizada", "Alteração realizada com sucesso");
                         break;
@@ -131,12 +145,6 @@ public class AdmnistradoresController extends HttpServlet implements ValidaDados
                         break;
                 }
                 
-                request.setAttribute("listaAdmnistrador", getFuncionarios(papel));
-                escolha = request.getParameter("btEnviar").split(" ")[1];
-                request.setAttribute("escolha", escolha);
-                request.setAttribute("acao", "ListarAdmnistrador");
-                request.setAttribute("papelFuncionario", getPapelChar(escolha));
-                request.setAttribute("link", "/aplicacaoMVC/admin/admnistrador/AdmnistradoresController?acao=ListarAdmnistrador&escolha=" + escolha);
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 

@@ -123,10 +123,13 @@ public class CompradoresController extends HttpServlet implements ValidaDados {
             rd.forward(request, response);
 
         } else {
-            Fornecedores fornecedores = new Fornecedores(id, razao_social, cnpj, endereco, bairro, cidade, uf, cep, telefone, email);
-            FornecedoresDao fornecedoresDao = new FornecedoresDao();
+            Fornecedores fornecedor = new Fornecedores(id, razao_social, cnpj, endereco, bairro, cidade, uf, cep, telefone, email);
             
             try {
+                request.setAttribute("fornecedor", fornecedor);
+                request.setAttribute("acao", btEnviar);
+                request.setAttribute("listaFornecedor", getFornecedores());
+                request.setAttribute("link", "/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=fornecedores");
                 switch (btEnviar) {
                     case "Incluir":
                         // Valida UF
@@ -137,11 +140,18 @@ public class CompradoresController extends HttpServlet implements ValidaDados {
                             rd.forward(request, response);
                             break;
                         }
-                        fornecedoresDao.insert(fornecedores);
+                        fornecedoresDao.insert(fornecedor);
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;
                     case "Alterar":
-                        fornecedoresDao.update(fornecedores);
+                        if (!ufEhValida(uf)) {
+                            request.setAttribute("msgError", "UF não existe");
+
+                            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
+                        fornecedoresDao.update(fornecedor);
                         request.setAttribute("msgOperacaoRealizada", "Alteração realizada com sucesso");
                         break;
                     case "Excluir":
@@ -150,8 +160,6 @@ public class CompradoresController extends HttpServlet implements ValidaDados {
                         break;
                 }
                 
-                request.setAttribute("listaFornecedor", getFornecedores());
-                request.setAttribute("link", "/aplicacaoMVC/admin/comprador/EscolhaListaController?escolha=fornecedores");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 

@@ -123,12 +123,17 @@ public class ClientesController extends HttpServlet implements ValidaDados {
              Clientes cliente = new Clientes(id, nome, cpf, endereco, bairro, cidade, uf, cep, telefone, email);
              clientesDAO = new ClientesDAO();
 
-            try {
+             try {                
+                String acao = request.getParameter("btEnviar");
+                request.setAttribute("cliente", cliente);
+                request.setAttribute("acao", btEnviar);
+                request.setAttribute("link", "/aplicacaoMVC/admin/vendedor/ClientesController?acao=ListarCliente");
+
                 switch (btEnviar) {
                     case "Incluir":
-                        if (!nomeEhValido(nome)) {
+                        if (!nomeEhValido(cliente.getNome())) {
                             request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
-                            rd = request.getRequestDispatcher("/views/admin/admnistradores/formFuncionarios.jsp");
+                            rd = request.getRequestDispatcher("/views/admin/vendedores/formClientes.jsp");
                             rd.forward(request, response);
                             break;
                         }
@@ -136,7 +141,7 @@ public class ClientesController extends HttpServlet implements ValidaDados {
                         if (!ufEhValida(uf)) {
                             request.setAttribute("msgError", "UF não existe");
                 
-                            rd = request.getRequestDispatcher("/views/admin/compradores/formCompradores.jsp");
+                            rd = request.getRequestDispatcher("/views/admin/vendedores/formClientes.jsp");
                             rd.forward(request, response);
                             break;
                         }
@@ -144,6 +149,20 @@ public class ClientesController extends HttpServlet implements ValidaDados {
                         request.setAttribute("msgOperacaoRealizada", "Inclusão realizada com sucesso");
                         break;
                     case "Alterar":
+                        if (!nomeEhValido(cliente.getNome())) {
+                            request.setAttribute("msgError", "Foram inseridos caracteres inválidos no nome");
+                            rd = request.getRequestDispatcher("/views/admin/vendedores/formClientes.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
+                
+                        if (!ufEhValida(uf)) {
+                            request.setAttribute("msgError", "UF não existe");
+                
+                            rd = request.getRequestDispatcher("/views/admin/vendedores/formClientes.jsp");
+                            rd.forward(request, response);
+                            break;
+                        }
                         clientesDAO.update(cliente);
                         request.setAttribute("msgOperacaoRealizada", "Alteração realizada com sucesso");
                         break;
@@ -152,10 +171,6 @@ public class ClientesController extends HttpServlet implements ValidaDados {
                         request.setAttribute("msgOperacaoRealizada", "Exclusão realizada com sucesso");
                         break;
                 }
-                
-                String acao = request.getParameter("btEnviar");
-                request.setAttribute("acao", "acao");
-                request.setAttribute("link", "/aplicacaoMVC/admin/vendedor/ClientesController?acao=ListarCliente");
                 rd = request.getRequestDispatcher("/views/comum/showMessage.jsp");
                 rd.forward(request, response);
 
