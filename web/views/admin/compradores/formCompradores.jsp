@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="#">
-        <title>Formulário de Admnistrador</title>
+        <title>Formulário de Fornecedor</title>
         <link href="http://localhost:8080/aplicacaoMVC/views/bootstrap/bootstrap.min.css"  rel="stylesheet">
     </head>
 
@@ -45,7 +45,7 @@
                     <form action="/aplicacaoMVC/admin/comprador/CompradoresController" method="POST">
                         <input type="hidden" name="id" value="<%=fornecedor.getId()%>" class="form-control">
                         <div class="mb-3">
-                            <label for="razao_social" class="form-label" >Nome</label>
+                            <label for="razao_social" class="form-label" >Razão social</label>
                             <input type="text" name="razao_social" maxlength="50"
                             minlength="3" <%= acao.equals("Excluir") ? "Readonly" : ""%> value="<%=fornecedor.getRazao_social()%>" class="form-control">
                         </div>
