@@ -2,7 +2,7 @@ package interfaces;
 
 public interface ValidaDados {
     default boolean nomeEhValido(String nome) {
-        return nome.chars().allMatch(Character::isLetter);
+        return !nome.chars().anyMatch(Character::isDigit);
     }
 
     default Boolean ufEhValida(String uf) {
